@@ -73,8 +73,8 @@ def render_agent_card(title: str, body: str, subtitle: str | None = None) -> Non
 
 def format_sources(sources: tuple[str, ...]) -> str | None:
     if not sources:
-        return None
-    return "RAG sources: " + ", ".join(sources)
+        return "RAG citations: No retrieved Chroma context. Run `python ingest.py --reset` after adding source data."
+    return "RAG citations: " + ", ".join(sources)
 
 
 def render_tradition_filter() -> tuple[str, tuple[str, ...]]:

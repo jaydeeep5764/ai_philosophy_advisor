@@ -3,9 +3,9 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from agents.philosopher_profiles import get_profile
+from retriever import retrieve_context
 from utils.llm import generate_response
 from utils.prompts import build_single_philosopher_prompt, build_safety_response, detect_safety_category
-from utils.rag import retrieve_context
 
 
 @dataclass(frozen=True)

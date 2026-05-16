@@ -4,6 +4,7 @@ from dataclasses import dataclass
 
 from agents.philosopher_profiles import get_profile
 from agents.single_agent import AgentResponse
+from retriever import retrieve_context
 from utils.llm import generate_response
 from utils.prompts import (
     build_council_review_prompt,
@@ -11,7 +12,6 @@ from utils.prompts import (
     build_single_philosopher_prompt,
     detect_safety_category,
 )
-from utils.rag import retrieve_context
 
 
 @dataclass(frozen=True)

@@ -12,7 +12,7 @@ The app does not pretend to quote historical philosophers. It gives modern inter
 - Modular agent layer separated from the Streamlit UI.
 - Reusable Gemini LLM integration through `utils/llm.py`.
 - Centralized prompt construction in `utils/prompts.py`.
-- Local RAG grounding from curated Markdown notes in `knowledge/`.
+- ChromaDB-based RAG grounding from structured JSON source records in `data/`.
 - Philosopher profiles with worldview, tone, principles, and misuse risks.
 - Philosopher taxonomy metadata for tradition, school, era, region, and future RAG source tags.
 - Sidebar filtering for All, Eastern, and Western philosophers.
@@ -32,12 +32,11 @@ philosophy_council_ai/
 ├── utils/
 │   ├── __init__.py
 │   ├── llm.py
-│   ├── rag.py
 │   └── prompts.py
-├── knowledge/
-│   ├── stoicism.md
-│   ├── buddhism.md
-│   └── ...
+├── data/
+│   └── marcus_aurelius_meditations.json
+├── ingest.py
+├── retriever.py
 ├── requirements.txt
 ├── .env.example
 └── README.md
@@ -86,6 +85,13 @@ Add your Gemini API key to `.env`:
 ```text
 GEMINI_API_KEY=your_real_key_here
 GEMINI_MODEL=gemini-2.5-flash
+GEMINI_EMBEDDING_MODEL=models/gemini-embedding-001
+```
+
+Build the local ChromaDB index:
+
+```bash
+python ingest.py --reset
 ```
 
 Run the app:
@@ -107,7 +113,9 @@ streamlit run app.py
 
 ## Design Notes
 
-The code is organized so new philosophers can be added by extending `PHILOSOPHER_PROFILES` in `agents/philosopher_profiles.py`. Each profile includes taxonomy fields such as `tradition`, `school`, `era`, `region`, and `source_tags`, which help retrieve relevant notes from `knowledge/`. Agent orchestration lives in `agents/`, prompt construction lives in `utils/prompts.py`, local RAG retrieval lives in `utils/rag.py`, and provider-specific LLM code lives in `utils/llm.py`.
+The code is organized so new philosophers can be added by extending `PHILOSOPHER_PROFILES` in `agents/philosopher_profiles.py`. Each profile includes taxonomy fields such as `tradition`, `school`, `era`, `region`, and `source_tags`. Agent orchestration lives in `agents/`, prompt construction lives in `utils/prompts.py`, ChromaDB ingestion lives in `ingest.py`, ChromaDB retrieval lives in `retriever.py`, and provider-specific LLM code lives in `utils/llm.py`.
+
+The current Chroma knowledge base is sourced from `data/marcus_aurelius_meditations.json`, so Marcus Aurelius has the strongest grounded answers. Add more structured JSON source files and ingestion logic as the next step to ground other philosophers.
 
 This foundation is intended to support future upgrades without major rewrites:
 

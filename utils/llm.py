@@ -9,6 +9,7 @@ from google.api_core import exceptions as google_exceptions
 
 
 DEFAULT_MODEL = "gemini-2.5-flash"
+DEFAULT_EMBEDDING_MODEL = "models/gemini-embedding-001"
 
 
 class LLMError(RuntimeError):
@@ -78,3 +79,36 @@ def generate_response(prompt: str, model_name: str | None = None) -> str:
         raise LLMError("Gemini returned an empty response. Try rephrasing your question.")
 
     return text.strip()
+
+
+def generate_embedding(text: str, task_type: str) -> list[float]:
+    if not text or not text.strip():
+        raise LLMError("Cannot generate an embedding from empty text.")
+
+    load_dotenv()
+    embedding_model = os.getenv("GEMINI_EMBEDDING_MODEL") or DEFAULT_EMBEDDING_MODEL
+    try:
+        genai.configure(api_key=_load_api_key())
+        result = genai.embed_content(
+            model=embedding_model,
+            content=text,
+            task_type=task_type,
+        )
+    except google_exceptions.PermissionDenied as exc:
+        raise LLMError("Gemini rejected the API key while generating embeddings.") from exc
+    except google_exceptions.ResourceExhausted as exc:
+        raise LLMError("Gemini embedding quota or rate limit was reached.") from exc
+    except google_exceptions.NotFound as exc:
+        raise LLMError(
+            "The configured Gemini embedding model was not found. "
+            "Set GEMINI_EMBEDDING_MODEL in .env to a supported embedding model."
+        ) from exc
+    except google_exceptions.GoogleAPIError as exc:
+        raise LLMError("Gemini API failed while generating an embedding.") from exc
+    except Exception as exc:
+        raise LLMError("Unexpected embedding failure. Check your API setup and network connection.") from exc
+
+    embedding = result.get("embedding") if isinstance(result, dict) else None
+    if not embedding:
+        raise LLMError("Gemini returned an empty embedding.")
+    return embedding

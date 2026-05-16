@@ -17,13 +17,18 @@ Safety and quality rules:
 
 def _format_retrieved_context(retrieved_context: str | None) -> str:
     if not retrieved_context:
-        return "No retrieved knowledge context was provided."
+        return (
+            "No retrieved source context was provided. The response must say that there is not enough "
+            "retrieved source material to answer in a grounded way for the selected philosopher."
+        )
 
     return f"""
-Use the following retrieved knowledge context as grounding.
-Treat it as curated app notes, not as exact historical quotation.
-Do not cite these notes as primary sources or invent book/page references.
-If the retrieved context is not relevant, rely on the philosopher profile instead.
+Use only the following retrieved source context as factual grounding.
+Do not add unsupported claims from memory or from the philosopher profile.
+The philosopher profile may guide voice and framing only, not factual content.
+Cite relevant claims using the provided citation labels, such as (Meditations, Book V.1).
+Prefer paraphrase. Use direct quotations only when short and necessary.
+If the retrieved context does not contain enough information to answer, say so clearly.
 
 Retrieved knowledge context:
 {retrieved_context}
@@ -125,13 +130,13 @@ User question:
 
 Required response format:
 ### Interpretive Note
-State in one short neutral sentence: "The following is an interpretation in the spirit of {profile.name}, not a verified historical statement or quote."
+State in one short neutral sentence: "The following is a RAG-grounded interpretation in the spirit of {profile.name}, based only on retrieved source context."
 
 ### {profile.name}'s Answer
-Answer in first person. Explain how your worldview analyzes the user's question. Use the philosopher's principles as reasoning tools.
+Answer in first person. Use only retrieved context as the basis for the answer. Include citations in parentheses using book and section.
 
 ### Practical Advice
-Give concrete next steps in a direct first-person advisory voice.
+Give concrete next steps in a direct first-person advisory voice. Every substantive idea must be grounded in retrieved context.
 
 ### Caution
 Warn, in first person, how your philosophy could mislead the user if followed blindly.
@@ -141,6 +146,7 @@ Voice constraints:
 - Use "I" for the philosopher persona.
 - Do not say "{profile.name} would...", "how I would...", or "from {profile.name}'s perspective..." after the interpretive note.
 - Do not invent exact quotes, anecdotes, or historical events.
+- Do not use any source outside the retrieved context.
 """.strip()
 
 
@@ -192,6 +198,11 @@ Give grounded, modern advice the user can act on.
 
 ### Warning
 Warn against following any single philosophy blindly.
+
+Citation rules:
+- Use only retrieved source context and already generated perspectives.
+- Cite retrieved source claims using book and section.
+- If retrieved context is insufficient, say that the review is limited by available source material.
 """.strip()
 
 
@@ -226,10 +237,11 @@ Write a concise challenge from {challenger.name} to {target.name}.
 Requirements:
 - Say this is in the spirit of {challenger.name}, not a real quote.
 - Use first-person persona voice, as if {challenger.name} is directly challenging {target.name}.
-- Challenge the assumptions, priorities, or risks in {target.name}'s view.
+- Challenge the assumptions, priorities, or risks in {target.name}'s view using only retrieved source context.
 - Keep it under 180 words.
 - Do not invent historical facts or quotes.
 - Do not write detached third-person commentary like "{challenger.name} would argue".
+- Cite retrieved source claims using book and section.
 """.strip()
 
 
@@ -277,4 +289,9 @@ Give practical advice for the user's next step.
 
 ### Blind-Spot Warning
 Warn against using any philosophy as an excuse for harm, avoidance, ego, manipulation, or passivity.
+
+Citation rules:
+- Use only retrieved source context, opening views, and challenges.
+- Cite retrieved source claims using book and section.
+- If retrieved context is insufficient, say that the debate is limited by available source material.
 """.strip()

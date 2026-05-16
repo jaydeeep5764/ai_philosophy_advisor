@@ -1,0 +1,746 @@
+[
+  {
+    "id": "med_1_1",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book I.1",
+    "theme": "Character and temper",
+    "text": "From my grandfather Verus I learned good morals and the government of my temper. From the reputation and remembrance of my father, modesty and a manly character. From my mother, piety and beneficence, and abstinence not only from evil deeds, but even from evil thoughts, and further, simplicity in my way of living."
+  },
+  {
+    "id": "med_1_2",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book I.2",
+    "theme": "Education and discipline",
+    "text": "From my great-grandfather, not to have frequented public schools, and to have had good teachers at home, and to know that on such things a man should spend liberally. From my governor, to be neither of the green nor of the blue party at the games, nor a partisan either of the Parmularius or the Scutarius at the gladiators' fights."
+  },
+  {
+    "id": "med_1_3",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book I.3",
+    "theme": "Self-control and endurance",
+    "text": "From him also I learned endurance of labor, and to want little, and to work with my own hands, and not to meddle with other people's affairs, and not to be ready to listen to slander. From Diognetus, not to busy myself about trifles, and not to give credit to what was said by miracle-workers and jugglers."
+  },
+  {
+    "id": "med_1_4",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book I.4",
+    "theme": "Intellectual humility",
+    "text": "From Rusticus I received the impression that my character required improvement and discipline; and from him I learned not to be led astray to sophistic emulation, nor to writing on speculative matters, nor to making display speeches, nor to showing myself off as a man who practices much discipline."
+  },
+  {
+    "id": "med_1_5",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book I.5",
+    "theme": "Philosophy and focus",
+    "text": "From Apollonius I learned freedom of will and undeviating steadiness of purpose; and to look to nothing else, not even for a moment, except to reason. From him I learned also consistency and unshaken firmness, and to be the same in sharp pains and after the loss of a child."
+  },
+  {
+    "id": "med_1_6",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book I.6",
+    "theme": "Kindness and leadership",
+    "text": "From Sextus, a benevolent disposition, and the example of a family governed in a fatherly manner; and the idea of living conformably to nature. From him I learned gravity without affectation, and to look carefully after the interests of friends."
+  },
+  {
+    "id": "med_1_7",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book I.7",
+    "theme": "Communication and humility",
+    "text": "From Alexander the grammarian, to refrain from fault-finding, and not to reproach people for speaking barbarously or incorrectly, but to gently introduce the proper expression. From Fronto I learned to observe what envy, duplicity, and hypocrisy are in a tyrant."
+  },
+  {
+    "id": "med_1_8",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book I.8",
+    "theme": "Simplicity and character",
+    "text": "From Maximus I learned self-government, and not to be led aside by anything; and cheerfulness in all circumstances, as well as in illness; and a just admixture in the moral character of sweetness and dignity, and to do what was set before me without complaining."
+  },
+  {
+    "id": "med_1_9",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book I.9",
+    "theme": "Learning and truth",
+    "text": "From my father I learned mildness of temper, and unchangeable resolution in the things which he had determined after due deliberation; and no vain-glory in those things which men call honors. He also taught me to be neither superstitious nor careless in matters of religion."
+  },
+  {
+    "id": "med_1_10",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book I.10",
+    "theme": "Gratitude and reflection",
+    "text": "I am thankful to the gods that I had good grandfathers, good parents, a good sister, good teachers, good associates, good kinsmen and friends, nearly everything good. I owe it to the gods that I did not fall into any gross fault, though I had the disposition."
+  },
+  {
+    "id": "med_2_1",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book II.1",
+    "theme": "Dealing with difficult people",
+    "text": "Begin the morning by saying to yourself: I shall meet with the busy-body, the ungrateful, arrogant, deceitful, envious, and unsocial. All these things happen to them by reason of their ignorance of what is good and evil. But I who have seen the nature of the good that it is beautiful, and of the bad that it is ugly, and the nature of the wrongdoer himself, that it is akin to me, not only of the same blood or seed, but that it participates in the same intelligence and the same portion of the divinity, I can neither be injured by any of them, nor can I be angry with my kinsman."
+  },
+  {
+    "id": "med_2_2",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book II.1 (continuation)",
+    "theme": "Human cooperation",
+    "text": "For we are made for cooperation, like feet, like hands, like eyelids, like the rows of the upper and lower teeth. To act against one another then is contrary to nature; and it is acting against one another to be vexed and to turn away."
+  },
+  {
+    "id": "med_2_3",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book II.2",
+    "theme": "Impermanence and identity",
+    "text": "Whatever this is that I am, it is a little flesh and breath, and the ruling part. Throw away your books; no longer distract yourself. It is not allowed. But as if you were now dying, despise the flesh; it is blood and bones and a network of nerves, veins, and arteries. Consider also what the breath is-air, and not always the same, but every moment sent out and again sucked in."
+  },
+  {
+    "id": "med_2_4",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book II.2 (continuation)",
+    "theme": "Focus on mind",
+    "text": "The third then is the ruling part: consider thus-You are an old man; no longer let this be a slave, no longer be pulled by the strings like a puppet to selfish impulses, no longer either be dissatisfied with your present lot, or shrink from the future."
+  },
+  {
+    "id": "med_2_5",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book II.3",
+    "theme": "Nature and acceptance",
+    "text": "All that is from the gods is full of providence. That which is from fortune is not separated from nature or without an interweaving and involution with the things which are ordered by providence. From thence all things flow; and there is besides necessity, and that which is for the advantage of the whole universe, of which you are a part."
+  },
+  {
+    "id": "med_2_6",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book II.5",
+    "theme": "Right action",
+    "text": "Each thing is satisfied when it accomplishes its proper work. A rational being has this proper work: to act according to reason. Therefore do not turn away from this; and you will be satisfied."
+  },
+  {
+    "id": "med_2_7",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book II.11",
+    "theme": "Mortality and urgency",
+    "text": "Do not act as if you had ten thousand years to throw away. Death stands at your elbow. Be good for something while you live and it is in your power."
+  },
+  {
+    "id": "med_2_8",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book II (general idea)",
+    "theme": "Control and judgment",
+    "text": "If you are pained by any external thing, it is not this thing that disturbs you, but your judgment about it. And it is in your power to wipe out this judgment now. But if anything in your own disposition gives you pain, who hinders you from correcting your opinion?"
+  },
+  {
+    "id": "med_3_1",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book III.1",
+    "theme": "Impermanence and time",
+    "text": "We ought to consider not only that our life is daily wasting away and a smaller part of it is left, but also that if we live longer, it is uncertain whether the understanding will still continue sufficient for the comprehension of things. The body grows old, and the mind may lose its power. Therefore one must not delay to live according to reason, since the capacity itself is not guaranteed."
+  },
+  {
+    "id": "med_3_2",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book III.2",
+    "theme": "Attention to nature",
+    "text": "We should observe carefully the operations of nature, not only in the grandest things but even in the smallest details. For everything that happens has a certain beauty, even if it appears trivial or unpleasant. The crack in bread, the ripening of fruit, and even decay all follow natural processes that reveal the harmony of the whole."
+  },
+  {
+    "id": "med_3_3",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book III.4",
+    "theme": "Inner integrity",
+    "text": "Do not waste what remains of your life in speculating about others, unless it is for some mutual benefit. To think constantly about what others are doing or saying leads one away from one's own ruling faculty. Instead, direct your thoughts toward what is just and beneficial, and preserve the integrity of your own mind."
+  },
+  {
+    "id": "med_3_4",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book III.5",
+    "theme": "Clarity and simplicity",
+    "text": "Men seek retreats for themselves, houses in the country, seashores, and mountains; and you too are accustomed to desire such things. But it is entirely within your power to retire into yourself. Nowhere can a man find a quieter or more untroubled retreat than in his own soul, especially when he has within himself such thoughts that by looking into them he is immediately in perfect tranquility."
+  },
+  {
+    "id": "med_3_5",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book III.6",
+    "theme": "Living in the present",
+    "text": "If you do the work before you following right reason seriously, vigorously, calmly, without allowing anything else to distract you, but keeping your divine part pure, then you will live well. You need not look beyond this. Live each act as if it were your last, free from all carelessness, passion, and hypocrisy."
+  },
+  {
+    "id": "med_3_6",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book III.7",
+    "theme": "True good",
+    "text": "The true good for a rational being is to act in accordance with its nature, which is reason. All other things-fame, pleasure, wealth-are external and indifferent. The value of life lies not in its length or circumstances, but in the quality of actions performed in accordance with reason."
+  },
+  {
+    "id": "med_3_7",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book III.9",
+    "theme": "Control of mind",
+    "text": "Hold in honor your ruling faculty, for it is the only thing that can prevent opinions from arising that are contrary to nature. If you guard this part of yourself, you will maintain freedom, self-respect, and harmony with the universe."
+  },
+  {
+    "id": "med_3_8",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book III.10",
+    "theme": "Freedom from distraction",
+    "text": "Do not act as if you were going to live forever. While you live, while it is in your power, be good. Remove unnecessary thoughts, focus on essential duties, and do not let your mind wander into useless concerns."
+  },
+  {
+    "id": "med_4_1",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book IV.3",
+    "theme": "Inner retreat",
+    "text": "Men seek retreats for themselves, houses in the country, seashores, and mountains; and you too are accustomed to desire such things. But it is entirely within your power to retire into yourself whenever you choose. For nowhere can a man find a more quiet or untroubled retreat than in his own soul, especially when he has within himself such thoughts that by looking into them he is immediately in perfect tranquility."
+  },
+  {
+    "id": "med_4_2",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book IV.4",
+    "theme": "Unity of mankind",
+    "text": "If our intellectual part is common, the reason also, in respect of which we are rational beings, is common. If this is so, then the reason which commands what ought to be done or left undone is also common. If this is so, there is a common law also; if this is so, we are fellow-citizens; if this is so, we are members of some political community; and if this is so, the world is in a manner a state."
+  },
+  {
+    "id": "med_4_3",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book IV.7",
+    "theme": "Perception and judgment",
+    "text": "If you are pained by any external thing, it is not this thing that disturbs you, but your judgment about it. And it is in your power to wipe out this judgment now. But if anything in your own disposition gives you pain, who hinders you from correcting your opinion?"
+  },
+  {
+    "id": "med_4_4",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book IV.17",
+    "theme": "Nature of time",
+    "text": "The present time is a point in eternity. All things are in flux, and nothing remains fixed. Consider how quickly all things are forgotten, and how vast the abyss of time both past and future. The universe is change; our life is what our thoughts make it."
+  },
+  {
+    "id": "med_4_5",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book IV.23",
+    "theme": "Acceptance of nature",
+    "text": "Everything is fitting for me which is fitting for you, O Universe. Nothing is too early or too late for me which is in due time for you. All things are fruit to me which your seasons bring, O Nature."
+  },
+  {
+    "id": "med_4_6",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book IV.24",
+    "theme": "Change and transformation",
+    "text": "The universal nature works the universal matter like wax; now it makes a horse, and when it has broken this figure, it uses the material for a tree, then for a man, then for something else. Each thing subsists for a very short time, and dissolution is no more harmful than birth."
+  },
+  {
+    "id": "med_4_7",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book IV.29",
+    "theme": "Right conduct",
+    "text": "Let no act be done without a purpose, nor otherwise than according to the perfect principles of art. In all that you do, consider the end and act accordingly, without distraction or deviation."
+  },
+  {
+    "id": "med_4_8",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book IV.33",
+    "theme": "Fame and reputation",
+    "text": "Consider how ephemeral and trivial human things are: yesterday a drop of semen, tomorrow a handful of ashes. Pass then through this little span of time conformably to nature, and end your journey in content."
+  },
+  {
+    "id": "med_4_9",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book IV.36",
+    "theme": "Perspective and scale",
+    "text": "Asia and Europe are but corners of the universe; the ocean a drop in the universe; Mount Athos a little clod; the present time a point in eternity. All things are little, changeable, and perishable."
+  },
+  {
+    "id": "med_5_1",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book V.1",
+    "theme": "Discipline and action",
+    "text": "In the morning when you rise unwillingly, let this thought be present: I am rising to the work of a human being. Why then am I dissatisfied if I am going to do the things for which I exist? Was I made for this, to lie under the blankets and keep myself warm? You will say, 'But this is more pleasant.' Were you then made for pleasure? Or for action and exertion?"
+  },
+  {
+    "id": "med_5_2",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book V.2",
+    "theme": "Purpose of existence",
+    "text": "Look at the plants, the birds, the ants, the spiders, the bees, all doing their own work and contributing to the order of the world. And will you, a rational being, refuse to do your part? Will you not run to the work for which your nature fits you?"
+  },
+  {
+    "id": "med_5_3",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book V.3",
+    "theme": "Inner resistance",
+    "text": "You do not love yourself enough, or you would love your nature too, and what it demands of you. Those who love their craft spend themselves on it without regard for food or sleep. But you value your own nature less than the engraver values his art."
+  },
+  {
+    "id": "med_5_4",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book V.8",
+    "theme": "Acceptance of events",
+    "text": "Do not be disgusted, nor discouraged, nor dissatisfied, if you do not succeed in doing everything according to right principles. But when you have failed, return again, and be content if most of what you do is consistent with human nature."
+  },
+  {
+    "id": "med_5_5",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book V.9",
+    "theme": "Resilience",
+    "text": "A man should stand erect, not be kept erect by others. Do not rely on external support; build strength within yourself, so that you can remain stable regardless of circumstances."
+  },
+  {
+    "id": "med_5_6",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book V.10",
+    "theme": "Control and perception",
+    "text": "Things do not touch the soul; they stand outside it. Disturbance comes only from within, from our opinions about things. Remove the judgment, and the disturbance is gone."
+  },
+  {
+    "id": "med_5_7",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book V.16",
+    "theme": "Rational nature",
+    "text": "A rational being's nature is to follow reason. If you follow reason, you will not complain about anything that happens, because it will be in accordance with the nature of the whole."
+  },
+  {
+    "id": "med_5_8",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book V.20",
+    "theme": "Consistency",
+    "text": "Be consistent with yourself. Let your actions align with your principles, and do not act contrary to your own understanding. Integrity lies in maintaining harmony between thought and action."
+  },
+  {
+    "id": "med_5_9",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book V.21",
+    "theme": "Right conduct",
+    "text": "Live in accordance with nature. Speak what is true, act what is just, and accept what happens as necessary. This is the path of a rational being."
+  },
+  {
+    "id": "med_6_1",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book VI.1",
+    "theme": "Universal order",
+    "text": "The substance of the universe is obedient and compliant; and the reason which governs it has in itself no cause for doing evil. For it has no malice, nor does it do harm to anything. All things are made and completed according to this reason. Therefore trust the order of things, for nothing happens without purpose in the whole."
+  },
+  {
+    "id": "med_6_2",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book VI.2",
+    "theme": "Acceptance",
+    "text": "Be content with what you are and what you have, and do not desire change out of dissatisfaction. Everything that happens is in accordance with nature, and therefore is neither harmful nor unjust. Accept what comes as if you had chosen it yourself."
+  },
+  {
+    "id": "med_6_3",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book VI.6",
+    "theme": "Non-retaliation",
+    "text": "The best way of avenging yourself is not to become like the wrongdoer. Do not mirror their behavior. Instead, remain aligned with your own principles, and let your character be untouched by their actions."
+  },
+  {
+    "id": "med_6_4",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book VI.9",
+    "theme": "Perspective",
+    "text": "All things change, and you yourself are in continuous transformation. The universe is a flowing stream, and events are like passing appearances. What you consider important now will soon be forgotten. Therefore, do not cling to transient things."
+  },
+  {
+    "id": "med_6_5",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book VI.13",
+    "theme": "Right action",
+    "text": "Do every act of your life as if it were your last. Let it be free from distraction, free from selfishness, free from hypocrisy. Let your actions be simple, direct, and in accordance with reason."
+  },
+  {
+    "id": "med_6_6",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book VI.22",
+    "theme": "Human connection",
+    "text": "If someone does wrong, it is because they are mistaken about what is good. Instead of reacting with anger, understand their ignorance. Correct them if possible; if not, bear with them patiently."
+  },
+  {
+    "id": "med_6_7",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book VI.30",
+    "theme": "Purpose and duty",
+    "text": "A rational being's purpose is to act in harmony with the whole. Do not isolate yourself from society or act selfishly. What benefits the whole benefits you as a part of it."
+  },
+  {
+    "id": "med_6_8",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book VI.36",
+    "theme": "Scale and insignificance",
+    "text": "Consider the vastness of time and space. The present moment is a tiny fragment of eternity, and all things are small and fleeting. Recognizing this frees you from anxiety about trivial matters."
+  },
+  {
+    "id": "med_6_9",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book VI.47",
+    "theme": "Self-discipline",
+    "text": "Keep your thoughts aligned with reason. Do not allow external events to disturb your inner state. Your peace depends on your control over your own mind, not on circumstances."
+  },
+  {
+    "id": "med_7_1",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book VII.1",
+    "theme": "Nature of reality",
+    "text": "What is badness? It is that which you have often seen. And on the occasion of everything which happens, keep this in mind: it is that which you have often seen. Everywhere, up and down, you will find the same things, with which old histories are filled, those of the middle ages and those of our own day. All things are of the same kind, familiar in experience, and transient."
+  },
+  {
+    "id": "med_7_2",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book VII.7",
+    "theme": "Change and perception",
+    "text": "The universe is change; our life is what our thoughts make it. Therefore, do not let your perception distort reality. Everything you experience depends on how you interpret it, and that interpretation is within your control."
+  },
+  {
+    "id": "med_7_3",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book VII.15",
+    "theme": "Focus on essentials",
+    "text": "Do not waste the remainder of your life in thoughts about others, unless it concerns the common good. To concern yourself excessively with what others think, say, or do distracts you from your own purpose and weakens your ability to act according to reason."
+  },
+  {
+    "id": "med_7_4",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book VII.26",
+    "theme": "Acceptance",
+    "text": "Accept the things to which fate binds you, and love the people with whom fate brings you together, but do so with all your heart. What comes to you is part of the natural order, and resisting it only creates unnecessary suffering."
+  },
+  {
+    "id": "med_7_5",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book VII.33",
+    "theme": "Self-awareness",
+    "text": "Immediately consider how everything is ephemeral, both that which remembers and that which is remembered. The whole earth is a point, and how small a corner of it you inhabit. Reflect on this, and free yourself from pride and anxiety."
+  },
+  {
+    "id": "med_7_6",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book VII.36",
+    "theme": "True strength",
+    "text": "It is a royal thing to be well spoken of for good deeds, but do not act for praise. Let your actions be their own reward. Fame is fleeting, and the judgment of others is unstable and often misguided."
+  },
+  {
+    "id": "med_7_7",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book VII.55",
+    "theme": "Social nature",
+    "text": "The nature of a rational being is social. We are made to work together, and acting against others is contrary to our design. Therefore, strive to act for the common good and maintain harmony with those around you."
+  },
+  {
+    "id": "med_7_8",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book VII.61",
+    "theme": "Inner control",
+    "text": "Your mind will take the shape of what you frequently hold in thought. Therefore, choose your thoughts carefully, for they determine the quality of your life and your character."
+  },
+  {
+    "id": "med_7_9",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book VII.70",
+    "theme": "Simplicity",
+    "text": "Confine yourself to the present. Do not let your mind wander into the past or the future unnecessarily. Live simply and focus on what must be done now."
+  },
+  {
+    "id": "med_8_1",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book VIII.1",
+    "theme": "Self-discipline",
+    "text": "Do not wander from your path any longer. You are not likely to read your own notebooks again, nor the acts of the ancient Romans and Greeks. Hasten then to the end which you have set before yourself, and throwing away idle hopes, come to your own aid, if you care at all for yourself."
+  },
+  {
+    "id": "med_8_2",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book VIII.5",
+    "theme": "Understanding actions",
+    "text": "Men do wrong either through ignorance or through design. If through ignorance, they deserve instruction; if through design, they are to be pitied. In either case, anger is useless, for it neither corrects the wrong nor improves your own character."
+  },
+  {
+    "id": "med_8_3",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book VIII.7",
+    "theme": "Impermanence",
+    "text": "Everything is ephemeral-both what remembers and what is remembered. Soon you will have forgotten all things, and all things will have forgotten you. Therefore do not attach importance to what will soon pass away."
+  },
+  {
+    "id": "med_8_4",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book VIII.9",
+    "theme": "Living according to nature",
+    "text": "Whatever is in accordance with nature is good. Therefore, if something happens to you that is in accordance with nature, do not complain. Accept it willingly, for it belongs to the order of the universe."
+  },
+  {
+    "id": "med_8_5",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book VIII.11",
+    "theme": "Clarity of thought",
+    "text": "Erase false impressions from your mind. Constantly remind yourself that external things have no power over you. What disturbs you is your own judgment. Correct your thinking, and you will restore peace."
+  },
+  {
+    "id": "med_8_6",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book VIII.15",
+    "theme": "Focus and purpose",
+    "text": "Do not act without purpose or direction. In every action, ask yourself whether it is necessary and aligned with reason. Remove what is unnecessary, and your life will become simpler and more effective."
+  },
+  {
+    "id": "med_8_7",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book VIII.36",
+    "theme": "Inner strength",
+    "text": "You must stand firm on your own foundation. Do not depend on others to maintain your balance. Your strength must come from your own reason and discipline."
+  },
+  {
+    "id": "med_8_8",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book VIII.45",
+    "theme": "Inner contentment",
+    "text": "Throw me into any situation, and I will keep my inner self content if it remains aligned with its nature. External conditions do not determine peace; alignment with reason does."
+  },
+  {
+    "id": "med_8_9",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book VIII.47",
+    "theme": "Resilience",
+    "text": "No harm can happen to you unless you allow it. External events cannot damage your inner character. Only your own response has that power."
+  },
+  {
+    "id": "med_9_1",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book IX.1",
+    "theme": "Nature of wrongdoing",
+    "text": "He who does wrong does wrong against himself. He who acts unjustly acts impiously, because the universal nature has made rational beings for one another, to benefit each other according to their worth. Therefore, to harm another is to act against nature itself."
+  },
+  {
+    "id": "med_9_2",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book IX.3",
+    "theme": "Falsehood",
+    "text": "He who lies is guilty of impiety. For the nature of the universe is the nature of things that are; and truth belongs to what exists. To lie is to act against reality itself, and thus against the order of the world."
+  },
+  {
+    "id": "med_9_3",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book IX.6",
+    "theme": "Death and acceptance",
+    "text": "Death is a release from the impressions of the senses, from the impulses that make us puppets, and from the service of the flesh. Therefore, it is nothing to be feared, but rather something natural and inevitable."
+  },
+  {
+    "id": "med_9_4",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book IX.9",
+    "theme": "Simplicity",
+    "text": "Do not complicate your life. Remove unnecessary desires and opinions. Live simply, and align your actions with reason. What is unnecessary only creates disturbance."
+  },
+  {
+    "id": "med_9_5",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book IX.11",
+    "theme": "Inner peace",
+    "text": "The soul becomes dyed with the color of its thoughts. Therefore, keep your thoughts pure, just, and aligned with reason. In doing so, you maintain peace within yourself regardless of external events."
+  },
+  {
+    "id": "med_9_6",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book IX.18",
+    "theme": "Futility of fame",
+    "text": "Consider how quickly all things are forgotten. The fame of those who are praised and those who praise them is equally fleeting. Therefore, do not act for recognition, but for the sake of right action itself."
+  },
+  {
+    "id": "med_9_7",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book IX.22",
+    "theme": "Dealing with others",
+    "text": "When another blames you or hates you, consider what sort of person he is. You will find that you need not trouble yourself about his opinion. Understand him, and you will not be disturbed."
+  },
+  {
+    "id": "med_9_8",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book IX.29",
+    "theme": "Alignment with nature",
+    "text": "Everything that happens happens in accordance with the nature of the whole. Accept it willingly, for resistance only increases suffering. Harmony with the universe is the path to peace."
+  },
+  {
+    "id": "med_9_9",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book IX.40",
+    "theme": "Prayer and control",
+    "text": "Do not pray for events to happen as you wish, but wish for them to happen as they do happen. In doing so, you align yourself with the natural order and eliminate unnecessary distress."
+  },
+  {
+    "id": "med_10_1",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book X.1",
+    "theme": "Return to reason",
+    "text": "Wilt thou then, my soul, never be good and simple and one and naked, more manifest than the body which surrounds thee? Wilt thou never enjoy an affectionate and contented disposition? Do not delay in returning to yourself and to reason, for this is your true nature."
+  },
+  {
+    "id": "med_10_2",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book X.5",
+    "theme": "Alignment with nature",
+    "text": "Whatever happens to you has been waiting to happen since the beginning of time. The weaving together of causes has brought it to you. Accept it as part of the natural order, not as something foreign or hostile."
+  },
+  {
+    "id": "med_10_3",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book X.8",
+    "theme": "Simplicity",
+    "text": "Do not complicate your thoughts. Keep them simple, just, and aligned with reason. Complexity arises from unnecessary desires and opinions."
+  },
+  {
+    "id": "med_10_4",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book X.11",
+    "theme": "Living presently",
+    "text": "Confine yourself to the present. Do not allow your mind to wander into what is not within your control. The present moment is all that you truly possess."
+  },
+  {
+    "id": "med_10_5",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book X.16",
+    "theme": "Duty",
+    "text": "Act as a human being should act: with justice, honesty, and discipline. Do not be distracted by pleasure or pain; focus only on what is right."
+  },
+  {
+    "id": "med_11_1",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book XI.1",
+    "theme": "Rational soul",
+    "text": "The rational soul has this nature: it sees itself, analyzes itself, and makes itself what it chooses. Therefore, your character is entirely within your control."
+  },
+  {
+    "id": "med_11_2",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book XI.3",
+    "theme": "Social responsibility",
+    "text": "We are made for cooperation. To act against others is to act against ourselves. Therefore, maintain harmony and contribute to the common good."
+  },
+  {
+    "id": "med_11_3",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book XI.5",
+    "theme": "Emotional control",
+    "text": "Do not let external events control your emotions. Your reactions are within your power, and you must govern them according to reason."
+  },
+  {
+    "id": "med_11_4",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book XI.15",
+    "theme": "Authenticity",
+    "text": "Do not proclaim your virtue. Let your actions reveal your character. True goodness does not need to announce itself."
+  },
+  {
+    "id": "med_12_1",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book XII.1",
+    "theme": "Completion of life",
+    "text": "All things are brought to completion according to nature. Life is a process that ends when its purpose is fulfilled. Therefore, do not fear its end."
+  },
+  {
+    "id": "med_12_2",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book XII.3",
+    "theme": "Right living",
+    "text": "Live as if this moment were your last. Let your actions be just, your thoughts clear, and your intentions pure. Nothing else is required."
+  },
+  {
+    "id": "med_12_3",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book XII.18",
+    "theme": "Letting go",
+    "text": "Cast away opinion, and you are saved. Who then hinders you from casting it away? Your suffering comes not from things, but from your judgments."
+  },
+  {
+    "id": "med_12_4",
+    "philosopher": "Marcus Aurelius",
+    "book": "Meditations",
+    "section": "Book XII.36",
+    "theme": "Acceptance of end",
+    "text": "You have lived as a citizen in a great city. What difference does it make whether for five years or for fifty? If you have lived according to its laws, you may depart content."
+  }
+]
