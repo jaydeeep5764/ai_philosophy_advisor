@@ -12,7 +12,8 @@ The app does not pretend to quote historical philosophers. It gives modern inter
 - Modular agent layer separated from the Streamlit UI.
 - Reusable Gemini LLM integration through `utils/llm.py`.
 - Centralized prompt construction in `utils/prompts.py`.
-- Streamlit session memory that remembers recent questions and answer summaries during the current browser session.
+- Streamlit session memory that remembers recent questions and answers during the current browser session.
+- Clickable memory history so users can reopen a prior exchange and continue with the same philosopher or council.
 - ChromaDB-based RAG grounding from structured JSON source records in `data/`.
 - Philosopher profiles with worldview, tone, principles, and misuse risks.
 - Philosopher taxonomy metadata for tradition, school, era, region, and future RAG source tags.
@@ -119,7 +120,7 @@ The code is organized so new philosophers can be added by extending `PHILOSOPHER
 
 The current Chroma knowledge base is sourced from `data/marcus_aurelius_meditations.json`, so Marcus Aurelius has the strongest grounded answers. Add more structured JSON source files and ingestion logic as the next step to ground other philosophers.
 
-Session memory is stored in Streamlit session state. It remembers the latest interactions only while the current app session is open, and can be cleared from the sidebar.
+Session memory is stored in Streamlit session state. It remembers the latest interactions only while the current app session is open, can be opened from the sidebar, and can be cleared from the sidebar. Selecting a memory loads the previous question and answer into the page and sets the app back to the same mode/philosopher set for continuation.
 
 This foundation is intended to support future upgrades without major rewrites:
 

@@ -13,6 +13,7 @@ class MemoryEntry:
     mode: str
     question: str
     philosophers: tuple[str, ...]
+    answer: str
     answer_preview: str
     created_at: str
 
@@ -27,6 +28,7 @@ def create_memory_entry(
         "mode": mode,
         "question": question.strip(),
         "philosophers": tuple(philosophers),
+        "answer": answer.strip(),
         "answer_preview": _preview(answer),
         "created_at": datetime.now().strftime("%Y-%m-%d %H:%M"),
     }
@@ -50,6 +52,7 @@ def build_memory_context(history: list[dict[str, object]]) -> str:
                     f"{index}. Mode: {entry.get('mode', '')}",
                     f"Question: {entry.get('question', '')}",
                     f"Philosophers: {philosophers}",
+                    f"Full previous answer: {entry.get('answer', entry.get('answer_preview', ''))}",
                     f"Previous answer gist: {entry.get('answer_preview', '')}",
                 )
             )

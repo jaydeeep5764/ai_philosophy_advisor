@@ -12,6 +12,10 @@ from utils.memory import append_memory_entry, build_memory_context, create_memor
 
 APP_TITLE = "Philosophy Council AI"
 MEMORY_KEY = "conversation_memory"
+ACTIVE_MEMORY_KEY = "active_memory_index"
+MODE_KEY = "selected_mode"
+SINGLE_PHILOSOPHER_KEY = "single_philosopher"
+PREFERRED_PHILOSOPHERS_KEY = "preferred_philosophers"
 
 
 def configure_page() -> None:
@@ -68,15 +72,48 @@ def render_profile_sidebar(selected_names: list[str]) -> None:
 def init_memory() -> None:
     if MEMORY_KEY not in st.session_state:
         st.session_state[MEMORY_KEY] = []
+    if ACTIVE_MEMORY_KEY not in st.session_state:
+        st.session_state[ACTIVE_MEMORY_KEY] = None
 
 
 def get_memory_context() -> str:
-    return build_memory_context(st.session_state.get(MEMORY_KEY, []))
+    history = st.session_state.get(MEMORY_KEY, [])
+    active_entry = get_active_memory_entry()
+    if not active_entry:
+        return build_memory_context(history)
+
+    return build_memory_context([active_entry, *[entry for entry in history if entry is not active_entry]])
 
 
 def remember_interaction(mode: str, question: str, philosophers: list[str], answer: str) -> None:
     entry = create_memory_entry(mode, question, philosophers, answer)
     st.session_state[MEMORY_KEY] = append_memory_entry(st.session_state.get(MEMORY_KEY, []), entry)
+    st.session_state[ACTIVE_MEMORY_KEY] = len(st.session_state[MEMORY_KEY]) - 1
+
+
+def get_active_memory_entry() -> dict[str, object] | None:
+    history = st.session_state.get(MEMORY_KEY, [])
+    active_index = st.session_state.get(ACTIVE_MEMORY_KEY)
+    if active_index is None:
+        return None
+    if not isinstance(active_index, int) or active_index < 0 or active_index >= len(history):
+        return None
+    return history[active_index]
+
+
+def activate_memory(index: int) -> None:
+    history = st.session_state.get(MEMORY_KEY, [])
+    if index < 0 or index >= len(history):
+        return
+
+    entry = history[index]
+    philosophers = tuple(entry.get("philosophers", ()))
+    st.session_state[ACTIVE_MEMORY_KEY] = index
+    st.session_state[MODE_KEY] = entry.get("mode", "Ask One Philosopher")
+    st.session_state[PREFERRED_PHILOSOPHERS_KEY] = philosophers
+    if philosophers:
+        st.session_state[SINGLE_PHILOSOPHER_KEY] = philosophers[0]
+    st.rerun()
 
 
 def render_memory_sidebar() -> None:
@@ -86,14 +123,34 @@ def render_memory_sidebar() -> None:
             st.caption("No remembered questions yet.")
         else:
             st.caption(f"Remembering the last {len(history)} interaction(s).")
-            for entry in reversed(history[-5:]):
+            for index in range(len(history) - 1, max(-1, len(history) - 6), -1):
+                entry = history[index]
                 philosophers = ", ".join(entry.get("philosophers", ()))
-                st.markdown(f"**{entry.get('mode', '')}**")
-                st.caption(f"{entry.get('question', '')}")
+                label = f"{entry.get('mode', '')}: {entry.get('question', '')[:42]}"
+                if st.button(label, key=f"memory_{index}", use_container_width=True):
+                    activate_memory(index)
                 st.caption(f"Philosophers: {philosophers}")
 
         if st.button("Clear memory", use_container_width=True):
             st.session_state[MEMORY_KEY] = []
+            st.session_state[ACTIVE_MEMORY_KEY] = None
+            st.rerun()
+
+
+def render_active_memory() -> None:
+    entry = get_active_memory_entry()
+    if not entry:
+        return
+
+    philosophers = ", ".join(entry.get("philosophers", ()))
+    with st.container(border=True):
+        st.caption("Continuing selected memory")
+        st.subheader(entry.get("question", "Previous question"))
+        st.caption(f"{entry.get('mode', '')} | {philosophers} | {entry.get('created_at', '')}")
+        with st.expander("Previous answer", expanded=False):
+            st.markdown(str(entry.get("answer", entry.get("answer_preview", ""))))
+        if st.button("Stop continuing this memory"):
+            st.session_state[ACTIVE_MEMORY_KEY] = None
             st.rerun()
 
 
@@ -121,8 +178,16 @@ def render_single_mode(
         st.warning("No philosophers are available for this filter yet.")
         return False, None
 
-    default_index = philosopher_names.index("Marcus Aurelius") if "Marcus Aurelius" in philosopher_names else 0
-    selected = st.selectbox("Choose a philosopher", philosopher_names, index=default_index)
+    preferred = st.session_state.get(SINGLE_PHILOSOPHER_KEY)
+    if preferred not in philosopher_names:
+        preferred = "Marcus Aurelius" if "Marcus Aurelius" in philosopher_names else philosopher_names[0]
+    default_index = philosopher_names.index(preferred)
+    selected = st.selectbox(
+        "Choose a philosopher",
+        philosopher_names,
+        index=default_index,
+        key=SINGLE_PHILOSOPHER_KEY,
+    )
     render_profile_sidebar([selected])
     submitted = st.button("Ask", type="primary", use_container_width=False)
     if not submitted:
@@ -153,7 +218,8 @@ def render_council_mode(
         return False, []
 
     st.markdown("Choose at least two philosophers for the council.")
-    default_names = {"Marcus Aurelius", "Buddha", "Nietzsche"}
+    preferred_names = set(st.session_state.get(PREFERRED_PHILOSOPHERS_KEY, ()))
+    default_names = preferred_names or {"Marcus Aurelius", "Buddha", "Nietzsche"}
     selected = [
         name
         for name in philosopher_names
@@ -205,7 +271,8 @@ def render_debate_mode(
         return False, []
 
     st.markdown("Choose 2 to 4 philosophers for the debate.")
-    default_names = {"Diogenes", "Machiavelli", "Marcus Aurelius"}
+    preferred_names = set(st.session_state.get(PREFERRED_PHILOSOPHERS_KEY, ()))
+    default_names = preferred_names or {"Diogenes", "Machiavelli", "Marcus Aurelius"}
     selected = [
         name
         for name in philosopher_names
@@ -260,14 +327,20 @@ def main() -> None:
     configure_page()
     init_memory()
     render_intro()
+    render_memory_sidebar()
 
+    modes = ["Ask One Philosopher", "Council Discussion", "Debate Mode"]
+    preferred_mode = st.session_state.get(MODE_KEY, modes[0])
+    mode_index = modes.index(preferred_mode) if preferred_mode in modes else 0
     mode = st.sidebar.radio(
         "Mode",
-        ["Ask One Philosopher", "Council Discussion", "Debate Mode"],
+        modes,
+        index=mode_index,
+        key=MODE_KEY,
     )
     _, philosopher_names = render_tradition_filter()
-    render_memory_sidebar()
     memory_context = get_memory_context()
+    render_active_memory()
 
     question = st.text_area(
         "Your question",
