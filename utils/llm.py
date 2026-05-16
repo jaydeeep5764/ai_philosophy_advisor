@@ -55,7 +55,7 @@ def generate_response(prompt: str, model_name: str | None = None) -> str:
             generation_config={
                 "temperature": 0.55,
                 "top_p": 0.9,
-                "max_output_tokens": 1400,
+                "max_output_tokens": 8192,
             },
         )
     except google_exceptions.PermissionDenied as exc:

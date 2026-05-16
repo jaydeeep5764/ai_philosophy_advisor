@@ -114,7 +114,7 @@ def retrieve_context(
     sources = tuple(dict.fromkeys(chunk.citation for chunk in selected_chunks))
     context_blocks = [
         (
-            f"[Citation: {chunk.citation} | Theme: {chunk.theme} | ID: {chunk.source_id}]\n"
+            f"Retrieved passage theme: {chunk.theme}\n"
             f"{chunk.text}"
         )
         for chunk in selected_chunks
