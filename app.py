@@ -4,7 +4,7 @@ import streamlit as st
 
 from agents.council_agent import run_council_discussion
 from agents.debate_agent import run_debate
-from agents.philosopher_profiles import PHILOSOPHER_NAMES, get_profile
+from agents.philosopher_profiles import TRADITION_FILTERS, get_philosopher_names_by_tradition, get_profile
 from agents.single_agent import ask_philosopher
 from utils.llm import LLMError
 
@@ -58,6 +58,7 @@ def render_profile_sidebar(selected_names: list[str]) -> None:
         for name in selected_names:
             profile = get_profile(name)
             st.markdown(f"**{profile.name}**")
+            st.caption(f"{profile.tradition} | {profile.school} | {profile.region}, {profile.era}")
             st.caption(profile.core_worldview)
             st.caption(f"Risk: {profile.danger_if_misunderstood}")
 
@@ -70,8 +71,20 @@ def render_agent_card(title: str, body: str, subtitle: str | None = None) -> Non
         st.markdown(body)
 
 
-def render_single_mode(question: str) -> tuple[bool, str]:
-    selected = st.selectbox("Choose a philosopher", PHILOSOPHER_NAMES, index=2)
+def render_tradition_filter() -> tuple[str, tuple[str, ...]]:
+    tradition = st.sidebar.selectbox("Philosopher tradition", TRADITION_FILTERS)
+    philosopher_names = get_philosopher_names_by_tradition(tradition)
+    st.sidebar.caption(f"{len(philosopher_names)} philosophers available")
+    return tradition, philosopher_names
+
+
+def render_single_mode(question: str, philosopher_names: tuple[str, ...]) -> tuple[bool, str | None]:
+    if not philosopher_names:
+        st.warning("No philosophers are available for this filter yet.")
+        return False, None
+
+    default_index = philosopher_names.index("Marcus Aurelius") if "Marcus Aurelius" in philosopher_names else 0
+    selected = st.selectbox("Choose a philosopher", philosopher_names, index=default_index)
     render_profile_sidebar([selected])
     submitted = st.button("Ask", type="primary", use_container_width=False)
     if not submitted:
@@ -93,12 +106,22 @@ def render_single_mode(question: str) -> tuple[bool, str]:
     return True, selected
 
 
-def render_council_mode(question: str) -> tuple[bool, list[str]]:
+def render_council_mode(question: str, philosopher_names: tuple[str, ...]) -> tuple[bool, list[str]]:
+    if not philosopher_names:
+        st.warning("No philosophers are available for this filter yet.")
+        return False, []
+
     st.markdown("Choose at least two philosophers for the council.")
+    default_names = {"Marcus Aurelius", "Buddha", "Nietzsche"}
     selected = [
         name
-        for name in PHILOSOPHER_NAMES
-        if st.checkbox(name, value=name in {"Marcus Aurelius", "Buddha", "Nietzsche"}, key=f"council_{name}")
+        for name in philosopher_names
+        if st.checkbox(
+            name,
+            value=name in default_names,
+            key=f"council_{name}",
+            help=f"{get_profile(name).tradition} | {get_profile(name).school}",
+        )
     ]
     render_profile_sidebar(selected)
 
@@ -132,12 +155,22 @@ def render_council_mode(question: str) -> tuple[bool, list[str]]:
     return True, selected
 
 
-def render_debate_mode(question: str) -> tuple[bool, list[str]]:
+def render_debate_mode(question: str, philosopher_names: tuple[str, ...]) -> tuple[bool, list[str]]:
+    if not philosopher_names:
+        st.warning("No philosophers are available for this filter yet.")
+        return False, []
+
     st.markdown("Choose 2 to 4 philosophers for the debate.")
+    default_names = {"Diogenes", "Machiavelli", "Marcus Aurelius"}
     selected = [
         name
-        for name in PHILOSOPHER_NAMES
-        if st.checkbox(name, value=name in {"Diogenes", "Machiavelli", "Marcus Aurelius"}, key=f"debate_{name}")
+        for name in philosopher_names
+        if st.checkbox(
+            name,
+            value=name in default_names,
+            key=f"debate_{name}",
+            help=f"{get_profile(name).tradition} | {get_profile(name).school}",
+        )
     ]
     render_profile_sidebar(selected)
 
@@ -183,6 +216,7 @@ def main() -> None:
         "Mode",
         ["Ask One Philosopher", "Council Discussion", "Debate Mode"],
     )
+    _, philosopher_names = render_tradition_filter()
 
     question = st.text_area(
         "Your question",
@@ -192,11 +226,11 @@ def main() -> None:
 
     try:
         if mode == "Ask One Philosopher":
-            render_single_mode(question)
+            render_single_mode(question, philosopher_names)
         elif mode == "Council Discussion":
-            render_council_mode(question)
+            render_council_mode(question, philosopher_names)
         else:
-            render_debate_mode(question)
+            render_debate_mode(question, philosopher_names)
     except LLMError as exc:
         st.error(str(exc))
         st.info("Check your Gemini API key, quota, and network connection, then try again.")

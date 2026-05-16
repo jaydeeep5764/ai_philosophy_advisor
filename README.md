@@ -13,6 +13,8 @@ The app does not pretend to quote historical philosophers. It gives modern inter
 - Reusable Gemini LLM integration through `utils/llm.py`.
 - Centralized prompt construction in `utils/prompts.py`.
 - Philosopher profiles with worldview, tone, principles, and misuse risks.
+- Philosopher taxonomy metadata for tradition, school, era, region, and future RAG source tags.
+- Sidebar filtering for All, Eastern, and Western philosophers.
 - Safety handling for self-harm, violence, crime, manipulation, medical, and legal topics.
 
 ## Folder Structure
@@ -97,7 +99,7 @@ streamlit run app.py
 
 ## Design Notes
 
-The code is organized so new philosophers can be added by extending `PHILOSOPHER_PROFILES` in `agents/philosopher_profiles.py`. Agent orchestration lives in `agents/`, prompt construction lives in `utils/prompts.py`, and provider-specific LLM code lives in `utils/llm.py`.
+The code is organized so new philosophers can be added by extending `PHILOSOPHER_PROFILES` in `agents/philosopher_profiles.py`. Each profile includes taxonomy fields such as `tradition`, `school`, `era`, `region`, and `source_tags`, which prepare the app for stronger filtering and future RAG retrieval. Agent orchestration lives in `agents/`, prompt construction lives in `utils/prompts.py`, and provider-specific LLM code lives in `utils/llm.py`.
 
 This foundation is intended to support future upgrades without major rewrites:
 
