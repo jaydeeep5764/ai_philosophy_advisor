@@ -6,7 +6,7 @@ The app does not pretend to quote historical philosophers. It gives modern inter
 
 ## Features
 
-- Ask One Philosopher mode with Diogenes, Machiavelli, Marcus Aurelius, Nietzsche, and Buddha.
+- Ask One Philosopher mode with Diogenes, Machiavelli, Marcus Aurelius, Nietzsche, Buddha, Confucius, Laozi, Chanakya, Socrates, Plato, Aristotle, Kant, and Camus.
 - Council Discussion mode where multiple philosophers answer, followed by a structured Council Review.
 - Debate Mode where 2 to 4 philosophers respond, challenge another view, and receive a neutral judge summary.
 - Modular agent layer separated from the Streamlit UI.
@@ -96,6 +96,8 @@ streamlit run app.py
 - How do I stay disciplined when motivation disappears?
 - Should I forgive someone who betrayed my trust?
 - How should I think about money without becoming obsessed with it?
+- How would Eastern and Western philosophers disagree about ambition?
+- Should I follow duty, happiness, or personal freedom when making a hard decision?
 
 ## Design Notes
 
