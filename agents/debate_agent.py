@@ -12,6 +12,7 @@ from utils.prompts import (
     build_single_philosopher_prompt,
     detect_safety_category,
 )
+from utils.rag import retrieve_context
 
 
 @dataclass(frozen=True)
@@ -43,15 +44,22 @@ def run_debate(philosopher_names: list[str], question: str) -> DebateResult:
         )
 
     profiles = [get_profile(name) for name in philosopher_names]
-    opening_views = [
-        AgentResponse(profile.name, generate_response(build_single_philosopher_prompt(profile, question)))
-        for profile in profiles
-    ]
+    opening_views = []
+    for profile in profiles:
+        context = retrieve_context(question, [profile])
+        opening_views.append(
+            AgentResponse(
+                profile.name,
+                generate_response(build_single_philosopher_prompt(profile, question, context.text)),
+                context.sources,
+            )
+        )
 
     challenges: list[DebateChallenge] = []
     for index, challenger in enumerate(profiles):
         target = _challenge_target(profiles, index)
-        prompt = build_debate_challenge_prompt(question, challenger, target, opening_views)
+        context = retrieve_context(question, [challenger, target])
+        prompt = build_debate_challenge_prompt(question, challenger, target, opening_views, context.text)
         challenges.append(
             DebateChallenge(
                 philosopher=challenger.name,
@@ -60,7 +68,8 @@ def run_debate(philosopher_names: list[str], question: str) -> DebateResult:
             )
         )
 
-    judge_prompt = build_debate_judge_prompt(question, profiles, opening_views, challenges)
+    judge_context = retrieve_context(question, profiles, max_chunks=6)
+    judge_prompt = build_debate_judge_prompt(question, profiles, opening_views, challenges, judge_context.text)
     return DebateResult(
         opening_views=opening_views,
         challenges=challenges,

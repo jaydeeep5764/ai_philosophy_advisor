@@ -14,6 +14,21 @@ Safety and quality rules:
 - Be practical, clear, and honest. Avoid poetic vagueness.
 """
 
+
+def _format_retrieved_context(retrieved_context: str | None) -> str:
+    if not retrieved_context:
+        return "No retrieved knowledge context was provided."
+
+    return f"""
+Use the following retrieved knowledge context as grounding.
+Treat it as curated app notes, not as exact historical quotation.
+Do not cite these notes as primary sources or invent book/page references.
+If the retrieved context is not relevant, rely on the philosopher profile instead.
+
+Retrieved knowledge context:
+{retrieved_context}
+""".strip()
+
 DANGEROUS_TOPIC_KEYWORDS: dict[str, tuple[str, ...]] = {
     "self-harm": (
         "kill myself",
@@ -88,7 +103,11 @@ def build_safety_response(question: str, category: str) -> str:
     )
 
 
-def build_single_philosopher_prompt(profile: PhilosopherProfile, question: str) -> str:
+def build_single_philosopher_prompt(
+    profile: PhilosopherProfile,
+    question: str,
+    retrieved_context: str | None = None,
+) -> str:
     return f"""
 You are generating an interpretive philosophical response for a modern AI app.
 Adopt the first-person voice of {profile.name}, as if {profile.name} is directly answering the user.
@@ -98,6 +117,8 @@ This is persona-based reasoning, not historical quotation or impersonation of a 
 
 Philosopher profile:
 {profile.prompt_context()}
+
+{_format_retrieved_context(retrieved_context)}
 
 User question:
 {question}
@@ -136,6 +157,7 @@ def build_council_review_prompt(
     question: str,
     profiles: list[PhilosopherProfile],
     perspectives: list[object],
+    retrieved_context: str | None = None,
 ) -> str:
     profile_context = "\n\n".join(profile.prompt_context() for profile in profiles)
     perspective_context = _format_perspectives(perspectives)
@@ -149,6 +171,8 @@ User question:
 
 Philosopher profiles:
 {profile_context}
+
+{_format_retrieved_context(retrieved_context)}
 
 Individual perspectives:
 {perspective_context}
@@ -176,6 +200,7 @@ def build_debate_challenge_prompt(
     challenger: PhilosopherProfile,
     target: PhilosopherProfile,
     opening_views: list[object],
+    retrieved_context: str | None = None,
 ) -> str:
     openings = _format_perspectives(opening_views)
     return f"""
@@ -191,6 +216,8 @@ Challenger profile:
 
 Target profile:
 {target.prompt_context()}
+
+{_format_retrieved_context(retrieved_context)}
 
 Opening views:
 {openings}
@@ -211,6 +238,7 @@ def build_debate_judge_prompt(
     profiles: list[PhilosopherProfile],
     opening_views: list[object],
     challenges: list[object],
+    retrieved_context: str | None = None,
 ) -> str:
     profile_context = "\n\n".join(profile.prompt_context() for profile in profiles)
     openings = _format_perspectives(opening_views)
@@ -228,6 +256,8 @@ User question:
 
 Philosopher profiles:
 {profile_context}
+
+{_format_retrieved_context(retrieved_context)}
 
 Opening views:
 {openings}

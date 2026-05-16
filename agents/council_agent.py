@@ -11,6 +11,7 @@ from utils.prompts import (
     build_single_philosopher_prompt,
     detect_safety_category,
 )
+from utils.rag import retrieve_context
 
 
 @dataclass(frozen=True)
@@ -31,10 +32,12 @@ def run_council_discussion(philosopher_names: list[str], question: str) -> Counc
     perspectives = []
     profiles = [get_profile(name) for name in philosopher_names]
     for profile in profiles:
-        prompt = build_single_philosopher_prompt(profile, question)
-        perspectives.append(AgentResponse(profile.name, generate_response(prompt)))
+        context = retrieve_context(question, [profile])
+        prompt = build_single_philosopher_prompt(profile, question, context.text)
+        perspectives.append(AgentResponse(profile.name, generate_response(prompt), context.sources))
 
-    review_prompt = build_council_review_prompt(question, profiles, perspectives)
+    review_context = retrieve_context(question, profiles, max_chunks=6)
+    review_prompt = build_council_review_prompt(question, profiles, perspectives, review_context.text)
     return CouncilResult(
         perspectives=perspectives,
         council_review=generate_response(review_prompt),

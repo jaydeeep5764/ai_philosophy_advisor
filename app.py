@@ -71,6 +71,12 @@ def render_agent_card(title: str, body: str, subtitle: str | None = None) -> Non
         st.markdown(body)
 
 
+def format_sources(sources: tuple[str, ...]) -> str | None:
+    if not sources:
+        return None
+    return "RAG sources: " + ", ".join(sources)
+
+
 def render_tradition_filter() -> tuple[str, tuple[str, ...]]:
     tradition = st.sidebar.selectbox("Philosopher tradition", TRADITION_FILTERS)
     philosopher_names = get_philosopher_names_by_tradition(tradition)
@@ -101,7 +107,7 @@ def render_single_mode(question: str, philosopher_names: tuple[str, ...]) -> tup
     render_agent_card(
         f"{result.philosopher}",
         result.response,
-        f"In the spirit of {profile.name}: {profile.core_worldview}",
+        format_sources(result.sources) or f"In the spirit of {profile.name}: {profile.core_worldview}",
     )
     return True, selected
 
@@ -143,11 +149,11 @@ def render_council_mode(question: str, philosopher_names: tuple[str, ...]) -> tu
     columns = st.columns(2)
     for index, perspective in enumerate(result.perspectives):
         with columns[index % 2]:
-            profile = get_profile(perspective.philosopher)
+            profile = get_profile(perspective.philosopher) if perspective.philosopher in philosopher_names else None
             render_agent_card(
                 perspective.philosopher,
                 perspective.response,
-                f"In the spirit of {profile.name}",
+                format_sources(perspective.sources) or (f"In the spirit of {profile.name}" if profile else None),
             )
 
     st.subheader("Council Review")
@@ -192,7 +198,11 @@ def render_debate_mode(question: str, philosopher_names: tuple[str, ...]) -> tup
     opening_columns = st.columns(2)
     for index, perspective in enumerate(result.opening_views):
         with opening_columns[index % 2]:
-            render_agent_card(perspective.philosopher, perspective.response)
+            render_agent_card(
+                perspective.philosopher,
+                perspective.response,
+                format_sources(perspective.sources),
+            )
 
     st.subheader("Challenges")
     challenge_columns = st.columns(2)
