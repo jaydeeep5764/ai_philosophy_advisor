@@ -15,7 +15,11 @@ class AgentResponse:
     sources: tuple[str, ...] = ()
 
 
-def ask_philosopher(philosopher_name: str, question: str) -> AgentResponse:
+def ask_philosopher(
+    philosopher_name: str,
+    question: str,
+    memory_context: str | None = None,
+) -> AgentResponse:
     safety_category = detect_safety_category(question)
     if safety_category:
         return AgentResponse(
@@ -25,7 +29,7 @@ def ask_philosopher(philosopher_name: str, question: str) -> AgentResponse:
 
     profile = get_profile(philosopher_name)
     context = retrieve_context(question, [profile])
-    prompt = build_single_philosopher_prompt(profile, question, context.text)
+    prompt = build_single_philosopher_prompt(profile, question, context.text, memory_context)
     return AgentResponse(
         philosopher=profile.name,
         response=generate_response(prompt),

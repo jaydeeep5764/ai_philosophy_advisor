@@ -7,9 +7,11 @@ from agents.debate_agent import run_debate
 from agents.philosopher_profiles import TRADITION_FILTERS, get_philosopher_names_by_tradition, get_profile
 from agents.single_agent import ask_philosopher
 from utils.llm import LLMError
+from utils.memory import append_memory_entry, build_memory_context, create_memory_entry
 
 
 APP_TITLE = "Philosophy Council AI"
+MEMORY_KEY = "conversation_memory"
 
 
 def configure_page() -> None:
@@ -63,6 +65,38 @@ def render_profile_sidebar(selected_names: list[str]) -> None:
             st.caption(f"Risk: {profile.danger_if_misunderstood}")
 
 
+def init_memory() -> None:
+    if MEMORY_KEY not in st.session_state:
+        st.session_state[MEMORY_KEY] = []
+
+
+def get_memory_context() -> str:
+    return build_memory_context(st.session_state.get(MEMORY_KEY, []))
+
+
+def remember_interaction(mode: str, question: str, philosophers: list[str], answer: str) -> None:
+    entry = create_memory_entry(mode, question, philosophers, answer)
+    st.session_state[MEMORY_KEY] = append_memory_entry(st.session_state.get(MEMORY_KEY, []), entry)
+
+
+def render_memory_sidebar() -> None:
+    history = st.session_state.get(MEMORY_KEY, [])
+    with st.sidebar.expander("Session memory", expanded=False):
+        if not history:
+            st.caption("No remembered questions yet.")
+        else:
+            st.caption(f"Remembering the last {len(history)} interaction(s).")
+            for entry in reversed(history[-5:]):
+                philosophers = ", ".join(entry.get("philosophers", ()))
+                st.markdown(f"**{entry.get('mode', '')}**")
+                st.caption(f"{entry.get('question', '')}")
+                st.caption(f"Philosophers: {philosophers}")
+
+        if st.button("Clear memory", use_container_width=True):
+            st.session_state[MEMORY_KEY] = []
+            st.rerun()
+
+
 def render_agent_card(title: str, body: str, subtitle: str | None = None) -> None:
     with st.container(border=True):
         st.subheader(title)
@@ -78,7 +112,11 @@ def render_tradition_filter() -> tuple[str, tuple[str, ...]]:
     return tradition, philosopher_names
 
 
-def render_single_mode(question: str, philosopher_names: tuple[str, ...]) -> tuple[bool, str | None]:
+def render_single_mode(
+    question: str,
+    philosopher_names: tuple[str, ...],
+    memory_context: str,
+) -> tuple[bool, str | None]:
     if not philosopher_names:
         st.warning("No philosophers are available for this filter yet.")
         return False, None
@@ -95,16 +133,21 @@ def render_single_mode(question: str, philosopher_names: tuple[str, ...]) -> tup
         return False, selected
 
     with st.spinner(f"Consulting {selected}..."):
-        result = ask_philosopher(selected, question)
+        result = ask_philosopher(selected, question, memory_context)
 
     render_agent_card(
         f"{result.philosopher}",
         result.response,
     )
+    remember_interaction("Ask One Philosopher", question, [selected], result.response)
     return True, selected
 
 
-def render_council_mode(question: str, philosopher_names: tuple[str, ...]) -> tuple[bool, list[str]]:
+def render_council_mode(
+    question: str,
+    philosopher_names: tuple[str, ...],
+    memory_context: str,
+) -> tuple[bool, list[str]]:
     if not philosopher_names:
         st.warning("No philosophers are available for this filter yet.")
         return False, []
@@ -135,7 +178,7 @@ def render_council_mode(question: str, philosopher_names: tuple[str, ...]) -> tu
         return False, selected
 
     with st.spinner("Convening the council..."):
-        result = run_council_discussion(selected, question)
+        result = run_council_discussion(selected, question, memory_context)
 
     st.subheader("Philosopher Perspectives")
     columns = st.columns(2)
@@ -148,10 +191,15 @@ def render_council_mode(question: str, philosopher_names: tuple[str, ...]) -> tu
 
     st.subheader("Council Review")
     render_agent_card("Final Review", result.council_review)
+    remember_interaction("Council Discussion", question, selected, result.council_review)
     return True, selected
 
 
-def render_debate_mode(question: str, philosopher_names: tuple[str, ...]) -> tuple[bool, list[str]]:
+def render_debate_mode(
+    question: str,
+    philosopher_names: tuple[str, ...],
+    memory_context: str,
+) -> tuple[bool, list[str]]:
     if not philosopher_names:
         st.warning("No philosophers are available for this filter yet.")
         return False, []
@@ -182,7 +230,7 @@ def render_debate_mode(question: str, philosopher_names: tuple[str, ...]) -> tup
         return False, selected
 
     with st.spinner("Opening the debate..."):
-        result = run_debate(selected, question)
+        result = run_debate(selected, question, memory_context)
 
     st.subheader("Opening Views")
     opening_columns = st.columns(2)
@@ -204,11 +252,13 @@ def render_debate_mode(question: str, philosopher_names: tuple[str, ...]) -> tup
 
     st.subheader("Neutral Judge")
     render_agent_card("Final Summary", result.judge_summary)
+    remember_interaction("Debate Mode", question, selected, result.judge_summary)
     return True, selected
 
 
 def main() -> None:
     configure_page()
+    init_memory()
     render_intro()
 
     mode = st.sidebar.radio(
@@ -216,6 +266,8 @@ def main() -> None:
         ["Ask One Philosopher", "Council Discussion", "Debate Mode"],
     )
     _, philosopher_names = render_tradition_filter()
+    render_memory_sidebar()
+    memory_context = get_memory_context()
 
     question = st.text_area(
         "Your question",
@@ -225,11 +277,11 @@ def main() -> None:
 
     try:
         if mode == "Ask One Philosopher":
-            render_single_mode(question, philosopher_names)
+            render_single_mode(question, philosopher_names, memory_context)
         elif mode == "Council Discussion":
-            render_council_mode(question, philosopher_names)
+            render_council_mode(question, philosopher_names, memory_context)
         else:
-            render_debate_mode(question, philosopher_names)
+            render_debate_mode(question, philosopher_names, memory_context)
     except LLMError as exc:
         st.error(str(exc))
         st.info("Check your Gemini API key, quota, and network connection, then try again.")

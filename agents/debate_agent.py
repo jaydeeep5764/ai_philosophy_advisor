@@ -33,7 +33,11 @@ def _challenge_target(profiles: list[PhilosopherProfile], index: int) -> Philoso
     return profiles[(index + 1) % len(profiles)]
 
 
-def run_debate(philosopher_names: list[str], question: str) -> DebateResult:
+def run_debate(
+    philosopher_names: list[str],
+    question: str,
+    memory_context: str | None = None,
+) -> DebateResult:
     safety_category = detect_safety_category(question)
     if safety_category:
         safety_response = build_safety_response(question, safety_category)
@@ -50,7 +54,7 @@ def run_debate(philosopher_names: list[str], question: str) -> DebateResult:
         opening_views.append(
             AgentResponse(
                 profile.name,
-                generate_response(build_single_philosopher_prompt(profile, question, context.text)),
+                generate_response(build_single_philosopher_prompt(profile, question, context.text, memory_context)),
                 context.sources,
             )
         )
@@ -59,7 +63,14 @@ def run_debate(philosopher_names: list[str], question: str) -> DebateResult:
     for index, challenger in enumerate(profiles):
         target = _challenge_target(profiles, index)
         context = retrieve_context(question, [challenger, target])
-        prompt = build_debate_challenge_prompt(question, challenger, target, opening_views, context.text)
+        prompt = build_debate_challenge_prompt(
+            question,
+            challenger,
+            target,
+            opening_views,
+            context.text,
+            memory_context,
+        )
         challenges.append(
             DebateChallenge(
                 philosopher=challenger.name,
@@ -69,7 +80,14 @@ def run_debate(philosopher_names: list[str], question: str) -> DebateResult:
         )
 
     judge_context = retrieve_context(question, profiles, max_chunks=6)
-    judge_prompt = build_debate_judge_prompt(question, profiles, opening_views, challenges, judge_context.text)
+    judge_prompt = build_debate_judge_prompt(
+        question,
+        profiles,
+        opening_views,
+        challenges,
+        judge_context.text,
+        memory_context,
+    )
     return DebateResult(
         opening_views=opening_views,
         challenges=challenges,
