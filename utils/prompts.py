@@ -26,8 +26,12 @@ def _format_retrieved_context(retrieved_context: str | None) -> str:
 Use only the following retrieved source context as factual grounding.
 Do not add unsupported claims from memory or from the philosopher profile.
 The philosopher profile may guide voice and framing only, not factual content.
-Cite relevant claims using the provided citation labels, such as (Meditations, Book V.1).
-Prefer paraphrase. Use direct quotations only when short and necessary.
+Use the retrieved text directly where possible.
+Include at least one exact phrase or sentence from the retrieved text.
+Do not fully paraphrase everything.
+For every claim, tie it clearly to a retrieved idea.
+Avoid generic philosophical language that could be written without the source context.
+Do not show book, section, source id, or citation labels in the final answer.
 If the retrieved context does not contain enough information to answer, say so clearly.
 
 Retrieved knowledge context:
@@ -130,13 +134,16 @@ User question:
 
 Required response format:
 ### Interpretive Note
-State in one short neutral sentence: "The following is a RAG-grounded interpretation in the spirit of {profile.name}, based only on retrieved source context."
+State in one short neutral sentence: "The following is an interpretation in the spirit of {profile.name}, grounded in retrieved source text."
 
-### {profile.name}'s Answer
-Answer in first person. Use only retrieved context as the basis for the answer. Include citations in parentheses using book and section.
+### Principle
+In first-person philosopher voice, give the central principle from the retrieved text. Include at least one exact phrase or sentence from the retrieved text in quotation marks. Do not mention book, section, source id, or citation labels.
 
-### Practical Advice
-Give concrete next steps in a direct first-person advisory voice. Every substantive idea must be grounded in retrieved context.
+### Interpretation
+Apply that principle sharply to the user's problem. Every substantive claim must clearly connect to a retrieved idea. Avoid generic life advice.
+
+### Direct Action
+Give concrete next steps in a direct first-person advisory voice. Make the advice crisp, practical, and rooted in the retrieved text.
 
 ### Caution
 Warn, in first person, how your philosophy could mislead the user if followed blindly.
@@ -147,6 +154,7 @@ Voice constraints:
 - Do not say "{profile.name} would...", "how I would...", or "from {profile.name}'s perspective..." after the interpretive note.
 - Do not invent exact quotes, anecdotes, or historical events.
 - Do not use any source outside the retrieved context.
+- Do not display citations, book names, section names, source ids, or retrieval metadata in the answer.
 """.strip()
 
 
@@ -201,7 +209,9 @@ Warn against following any single philosophy blindly.
 
 Citation rules:
 - Use only retrieved source context and already generated perspectives.
-- Cite retrieved source claims using book and section.
+- Do not display citations, book names, section names, source ids, or retrieval metadata.
+- Include at least one exact phrase from retrieved context where it strengthens the answer.
+- Tie every claim clearly to retrieved ideas and avoid generic philosophical language.
 - If retrieved context is insufficient, say that the review is limited by available source material.
 """.strip()
 
@@ -238,10 +248,11 @@ Requirements:
 - Say this is in the spirit of {challenger.name}, not a real quote.
 - Use first-person persona voice, as if {challenger.name} is directly challenging {target.name}.
 - Challenge the assumptions, priorities, or risks in {target.name}'s view using only retrieved source context.
+- Include one short exact phrase from retrieved context if available.
 - Keep it under 180 words.
 - Do not invent historical facts or quotes.
 - Do not write detached third-person commentary like "{challenger.name} would argue".
-- Cite retrieved source claims using book and section.
+- Do not display citations, book names, section names, source ids, or retrieval metadata.
 """.strip()
 
 
@@ -292,6 +303,8 @@ Warn against using any philosophy as an excuse for harm, avoidance, ego, manipul
 
 Citation rules:
 - Use only retrieved source context, opening views, and challenges.
-- Cite retrieved source claims using book and section.
+- Do not display citations, book names, section names, source ids, or retrieval metadata.
+- Include at least one exact phrase from retrieved context where it strengthens the summary.
+- Tie every claim clearly to retrieved ideas and avoid generic philosophical language.
 - If retrieved context is insufficient, say that the debate is limited by available source material.
 """.strip()
