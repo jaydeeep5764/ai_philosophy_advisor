@@ -74,11 +74,42 @@ def generate_response(prompt: str, model_name: str | None = None) -> str:
     except Exception as exc:
         raise LLMError("Unexpected LLM failure. Check your API setup and network connection.") from exc
 
-    text = getattr(response, "text", None)
+    text = _extract_response_text(response)
     if not text or not text.strip():
-        raise LLMError("Gemini returned an empty response. Try rephrasing your question.")
+        finish_reason = _finish_reason(response)
+        raise LLMError(
+            "Gemini returned an empty response"
+            + (f" with finish reason {finish_reason}" if finish_reason else "")
+            + ". Try rephrasing your question or asking again."
+        )
 
     return text.strip()
+
+
+def _extract_response_text(response: object) -> str:
+    try:
+        text = getattr(response, "text", None)
+        if text:
+            return str(text)
+    except Exception:
+        pass
+
+    parts_text: list[str] = []
+    for candidate in getattr(response, "candidates", []) or []:
+        content = getattr(candidate, "content", None)
+        for part in getattr(content, "parts", []) or []:
+            text = getattr(part, "text", None)
+            if text:
+                parts_text.append(str(text))
+    return "\n".join(parts_text)
+
+
+def _finish_reason(response: object) -> str:
+    candidates = getattr(response, "candidates", []) or []
+    if not candidates:
+        return ""
+    finish_reason = getattr(candidates[0], "finish_reason", "")
+    return str(finish_reason) if finish_reason else ""
 
 
 def generate_embedding(text: str, task_type: str) -> list[float]:
