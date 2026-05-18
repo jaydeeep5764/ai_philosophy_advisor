@@ -6,6 +6,7 @@ from dataclasses import dataclass
 @dataclass(frozen=True)
 class PhilosopherProfile:
     name: str
+    full_name: str
     tradition: str
     school: str
     era: str
@@ -21,6 +22,7 @@ class PhilosopherProfile:
         source_tags = ", ".join(self.source_tags)
         return (
             f"Name: {self.name}\n"
+            f"Full historical name or identifier: {self.full_name}\n"
             f"Tradition: {self.tradition}\n"
             f"School: {self.school}\n"
             f"Era: {self.era}\n"
@@ -36,6 +38,7 @@ class PhilosopherProfile:
 PHILOSOPHER_PROFILES: dict[str, PhilosopherProfile] = {
     "Diogenes": PhilosopherProfile(
         name="Diogenes",
+        full_name="Diogenes of Sinope",
         tradition="Western",
         school="Cynicism",
         era="Ancient",
@@ -53,6 +56,7 @@ PHILOSOPHER_PROFILES: dict[str, PhilosopherProfile] = {
     ),
     "Machiavelli": PhilosopherProfile(
         name="Machiavelli",
+        full_name="Niccolo Machiavelli",
         tradition="Western",
         school="Political Realism",
         era="Renaissance",
@@ -70,6 +74,7 @@ PHILOSOPHER_PROFILES: dict[str, PhilosopherProfile] = {
     ),
     "Marcus Aurelius": PhilosopherProfile(
         name="Marcus Aurelius",
+        full_name="Marcus Aurelius Antoninus",
         tradition="Western",
         school="Stoicism",
         era="Ancient",
@@ -87,6 +92,7 @@ PHILOSOPHER_PROFILES: dict[str, PhilosopherProfile] = {
     ),
     "Nietzsche": PhilosopherProfile(
         name="Nietzsche",
+        full_name="Friedrich Nietzsche",
         tradition="Western",
         school="Existentialism / Continental Philosophy",
         era="Modern",
@@ -104,6 +110,7 @@ PHILOSOPHER_PROFILES: dict[str, PhilosopherProfile] = {
     ),
     "Buddha": PhilosopherProfile(
         name="Buddha",
+        full_name="Siddhartha Gautama, the Buddha",
         tradition="Eastern",
         school="Buddhism",
         era="Ancient",
@@ -121,6 +128,7 @@ PHILOSOPHER_PROFILES: dict[str, PhilosopherProfile] = {
     ),
     "Confucius": PhilosopherProfile(
         name="Confucius",
+        full_name="Kong Qiu, known as Confucius",
         tradition="Eastern",
         school="Confucianism",
         era="Ancient",
@@ -138,6 +146,7 @@ PHILOSOPHER_PROFILES: dict[str, PhilosopherProfile] = {
     ),
     "Laozi": PhilosopherProfile(
         name="Laozi",
+        full_name="Laozi, traditionally associated with Li Er",
         tradition="Eastern",
         school="Taoism",
         era="Ancient",
@@ -155,6 +164,7 @@ PHILOSOPHER_PROFILES: dict[str, PhilosopherProfile] = {
     ),
     "Chanakya": PhilosopherProfile(
         name="Chanakya",
+        full_name="Chanakya, also known as Kautilya or Vishnugupta",
         tradition="Eastern",
         school="Arthashastra / Political Strategy",
         era="Ancient",
@@ -172,6 +182,7 @@ PHILOSOPHER_PROFILES: dict[str, PhilosopherProfile] = {
     ),
     "Socrates": PhilosopherProfile(
         name="Socrates",
+        full_name="Socrates",
         tradition="Western",
         school="Socratic Philosophy",
         era="Ancient",
@@ -189,6 +200,7 @@ PHILOSOPHER_PROFILES: dict[str, PhilosopherProfile] = {
     ),
     "Plato": PhilosopherProfile(
         name="Plato",
+        full_name="Plato, traditionally identified with Aristocles",
         tradition="Western",
         school="Platonism",
         era="Ancient",
@@ -206,6 +218,7 @@ PHILOSOPHER_PROFILES: dict[str, PhilosopherProfile] = {
     ),
     "Aristotle": PhilosopherProfile(
         name="Aristotle",
+        full_name="Aristotle of Stagira",
         tradition="Western",
         school="Aristotelian Virtue Ethics",
         era="Ancient",
@@ -223,6 +236,7 @@ PHILOSOPHER_PROFILES: dict[str, PhilosopherProfile] = {
     ),
     "Kant": PhilosopherProfile(
         name="Kant",
+        full_name="Immanuel Kant",
         tradition="Western",
         school="Deontological Ethics",
         era="Modern",
@@ -240,6 +254,7 @@ PHILOSOPHER_PROFILES: dict[str, PhilosopherProfile] = {
     ),
     "Camus": PhilosopherProfile(
         name="Camus",
+        full_name="Albert Camus",
         tradition="Western",
         school="Absurdism",
         era="Contemporary",

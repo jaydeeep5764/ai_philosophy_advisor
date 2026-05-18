@@ -64,6 +64,7 @@ def render_profile_sidebar(selected_names: list[str]) -> None:
         for name in selected_names:
             profile = get_profile(name)
             st.markdown(f"**{profile.name}**")
+            st.caption(profile.full_name)
             st.caption(f"{profile.tradition} | {profile.school} | {profile.region}, {profile.era}")
             st.caption(profile.core_worldview)
             st.caption(f"Risk: {profile.danger_if_misunderstood}")
