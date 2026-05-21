@@ -24,6 +24,7 @@ def run_council_discussion(
     philosopher_names: list[str],
     question: str,
     memory_context: str | None = None,
+    response_language: str = "English",
 ) -> CouncilResult:
     safety_category = detect_safety_category(question)
     if safety_category:
@@ -37,11 +38,18 @@ def run_council_discussion(
     profiles = [get_profile(name) for name in philosopher_names]
     for profile in profiles:
         context = retrieve_context(question, [profile])
-        prompt = build_single_philosopher_prompt(profile, question, context.text, memory_context)
+        prompt = build_single_philosopher_prompt(profile, question, context.text, memory_context, response_language)
         perspectives.append(AgentResponse(profile.name, generate_response(prompt), context.sources))
 
     review_context = retrieve_context(question, profiles, max_chunks=6)
-    review_prompt = build_council_review_prompt(question, profiles, perspectives, review_context.text, memory_context)
+    review_prompt = build_council_review_prompt(
+        question,
+        profiles,
+        perspectives,
+        review_context.text,
+        memory_context,
+        response_language,
+    )
     return CouncilResult(
         perspectives=perspectives,
         council_review=generate_response(review_prompt),

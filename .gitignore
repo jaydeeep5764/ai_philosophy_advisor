@@ -5,3 +5,4 @@ __pycache__/
 .streamlit/secrets.toml
 chroma_db/
 .DS_Store
+streamlit*.log

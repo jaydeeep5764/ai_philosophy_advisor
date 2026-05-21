@@ -37,6 +37,7 @@ def run_debate(
     philosopher_names: list[str],
     question: str,
     memory_context: str | None = None,
+    response_language: str = "English",
 ) -> DebateResult:
     safety_category = detect_safety_category(question)
     if safety_category:
@@ -54,7 +55,15 @@ def run_debate(
         opening_views.append(
             AgentResponse(
                 profile.name,
-                generate_response(build_single_philosopher_prompt(profile, question, context.text, memory_context)),
+                generate_response(
+                    build_single_philosopher_prompt(
+                        profile,
+                        question,
+                        context.text,
+                        memory_context,
+                        response_language,
+                    )
+                ),
                 context.sources,
             )
         )
@@ -70,6 +79,7 @@ def run_debate(
             opening_views,
             context.text,
             memory_context,
+            response_language,
         )
         challenges.append(
             DebateChallenge(
@@ -87,6 +97,7 @@ def run_debate(
         challenges,
         judge_context.text,
         memory_context,
+        response_language,
     )
     return DebateResult(
         opening_views=opening_views,

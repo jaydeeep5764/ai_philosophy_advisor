@@ -54,6 +54,19 @@ Do not let memory override the retrieved source context.
 Do not mention memory explicitly unless it is directly useful.
 """.strip()
 
+
+def _format_language_instruction(response_language: str | None) -> str:
+    language = (response_language or "English").strip() or "English"
+    return f"""
+Response language:
+- Write the final user-facing answer in {language}.
+- Keep philosopher names, book titles, and short exact retrieved phrases in their original language when translation would weaken grounding.
+- If you quote an exact retrieved phrase, you may immediately explain it in {language}.
+- Keep Markdown section headings in {language} when natural.
+- Do not mention that you were instructed to use this language.
+""".strip()
+
+
 DANGEROUS_TOPIC_KEYWORDS: dict[str, tuple[str, ...]] = {
     "self-harm": (
         "kill myself",
@@ -133,6 +146,7 @@ def build_single_philosopher_prompt(
     question: str,
     retrieved_context: str | None = None,
     memory_context: str | None = None,
+    response_language: str = "English",
 ) -> str:
     return f"""
 You are generating an interpretive philosophical response for a modern AI app.
@@ -147,6 +161,8 @@ Philosopher profile:
 {_format_retrieved_context(retrieved_context)}
 
 {_format_memory_context(memory_context)}
+
+{_format_language_instruction(response_language)}
 
 User question:
 {question}
@@ -199,6 +215,7 @@ def build_council_review_prompt(
     perspectives: list[object],
     retrieved_context: str | None = None,
     memory_context: str | None = None,
+    response_language: str = "English",
 ) -> str:
     profile_context = "\n\n".join(profile.prompt_context() for profile in profiles)
     perspective_context = _format_perspectives(perspectives)
@@ -216,6 +233,8 @@ Philosopher profiles:
 {_format_retrieved_context(retrieved_context)}
 
 {_format_memory_context(memory_context)}
+
+{_format_language_instruction(response_language)}
 
 Individual perspectives:
 {perspective_context}
@@ -252,6 +271,7 @@ def build_debate_challenge_prompt(
     opening_views: list[object],
     retrieved_context: str | None = None,
     memory_context: str | None = None,
+    response_language: str = "English",
 ) -> str:
     openings = _format_perspectives(opening_views)
     return f"""
@@ -271,6 +291,8 @@ Target profile:
 {_format_retrieved_context(retrieved_context)}
 
 {_format_memory_context(memory_context)}
+
+{_format_language_instruction(response_language)}
 
 Opening views:
 {openings}
@@ -295,6 +317,7 @@ def build_debate_judge_prompt(
     challenges: list[object],
     retrieved_context: str | None = None,
     memory_context: str | None = None,
+    response_language: str = "English",
 ) -> str:
     profile_context = "\n\n".join(profile.prompt_context() for profile in profiles)
     openings = _format_perspectives(opening_views)
@@ -316,6 +339,8 @@ Philosopher profiles:
 {_format_retrieved_context(retrieved_context)}
 
 {_format_memory_context(memory_context)}
+
+{_format_language_instruction(response_language)}
 
 Opening views:
 {openings}

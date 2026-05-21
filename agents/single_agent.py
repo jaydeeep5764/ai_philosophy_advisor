@@ -19,6 +19,7 @@ def ask_philosopher(
     philosopher_name: str,
     question: str,
     memory_context: str | None = None,
+    response_language: str = "English",
 ) -> AgentResponse:
     safety_category = detect_safety_category(question)
     if safety_category:
@@ -29,7 +30,13 @@ def ask_philosopher(
 
     profile = get_profile(philosopher_name)
     context = retrieve_context(question, [profile])
-    prompt = build_single_philosopher_prompt(profile, question, context.text, memory_context)
+    prompt = build_single_philosopher_prompt(
+        profile,
+        question,
+        context.text,
+        memory_context,
+        response_language,
+    )
     return AgentResponse(
         philosopher=profile.name,
         response=generate_response(prompt),
