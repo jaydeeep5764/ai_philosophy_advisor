@@ -743,7 +743,7 @@ def main() -> None:
             render_debate_mode(question, philosopher_names, memory_context, response_language)
     except LLMError as exc:
         st.error(str(exc))
-        st.info("Check your Gemini API key, quota, and network connection, then try again.")
+        st.info("Check the selected LLM provider key, API billing or quota, and network connection, then try again.")
 
 
 if __name__ == "__main__":

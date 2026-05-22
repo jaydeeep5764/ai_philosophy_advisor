@@ -15,6 +15,14 @@ CHROMA_PATH = ROOT_DIR / "chroma_db"
 COLLECTION_NAME = "philosophy_council_sources"
 REQUIRED_FIELDS = {"id", "philosopher", "book", "section", "theme", "text"}
 CHANAKYA_FIELDS = {"id", "section", "subsection", "title", "principle", "elaboration", "source"}
+DOSSIER_LIST_FIELDS = (
+    "core_philosophy",
+    "famous_quotes",
+    "life_events",
+    "key_relationships",
+    "key_dialogues",
+    "views_on_specific_topics",
+)
 
 
 def _normalise_name(value: str) -> str:
@@ -32,6 +40,205 @@ def _philosopher_aliases() -> dict[str, str]:
 def canonical_philosopher_name(raw_name: str) -> str:
     aliases = _philosopher_aliases()
     return aliases.get(_normalise_name(raw_name), raw_name.strip())
+
+
+def _source_id_prefix(philosopher_name: str) -> str:
+    return "".join(
+        character.lower() if character.isalnum() else "_"
+        for character in canonical_philosopher_name(philosopher_name)
+    ).strip("_")
+
+
+def _join_list(value: Any) -> str:
+    if isinstance(value, list):
+        return ", ".join(str(item) for item in value)
+    return str(value or "")
+
+
+def _record(
+    *,
+    source_id: str,
+    philosopher: str,
+    book: str,
+    section: str,
+    theme: str,
+    text: str,
+    path: Path,
+) -> dict[str, Any]:
+    return {
+        "id": source_id,
+        "philosopher": canonical_philosopher_name(philosopher),
+        "book": book,
+        "section": section,
+        "theme": theme,
+        "text": text,
+        "source_file": path.name,
+    }
+
+
+def _normalise_dossier(data: dict[str, Any], path: Path) -> list[dict[str, Any]]:
+    philosopher = canonical_philosopher_name(str(data.get("philosopher", "")).strip())
+    if not philosopher:
+        raise ValueError(f"{path} dossier is missing the top-level 'philosopher' field.")
+
+    prefix = _source_id_prefix(philosopher)
+    book = f"{philosopher} Knowledge Dossier"
+    records: list[dict[str, Any]] = [
+        _record(
+            source_id=f"{prefix}_overview",
+            philosopher=philosopher,
+            book=book,
+            section="Overview",
+            theme="Identity and school",
+            text=(
+                f"Philosopher: {data.get('philosopher', philosopher)}\n"
+                f"Also known as: {_join_list(data.get('also_known_as'))}\n"
+                f"Born: {data.get('born', '')}\n"
+                f"Died: {data.get('died', '')}\n"
+                f"Era: {data.get('era', '')}\n"
+                f"School: {data.get('school', '')}\n"
+                f"Note: {data.get('note', '')}"
+            ),
+            path=path,
+        )
+    ]
+
+    for item in data.get("core_philosophy", []):
+        records.append(
+            _record(
+                source_id=f"{prefix}_{item['id']}",
+                philosopher=philosopher,
+                book=book,
+                section="Core philosophy",
+                theme=str(item.get("topic", "")),
+                text=(
+                    f"Topic: {item.get('topic', '')}\n"
+                    f"Source: {item.get('source', '')}\n"
+                    f"Content: {item.get('content', '')}\n"
+                    f"Keywords: {_join_list(item.get('keywords'))}"
+                ),
+                path=path,
+            )
+        )
+
+    for item in data.get("famous_quotes", []):
+        records.append(
+            _record(
+                source_id=f"{prefix}_{item['id']}",
+                philosopher=philosopher,
+                book=book,
+                section="Famous quote",
+                theme=_join_list(item.get("themes")) or "Quote",
+                text=(
+                    f"Quote: \"{item.get('quote', '')}\"\n"
+                    f"Speaker: {item.get('speaker', '')}\n"
+                    f"Source: {item.get('source', '')}\n"
+                    f"Quote status: {item.get('quote_status', '')}\n"
+                    f"Context: {item.get('context', '')}\n"
+                    f"Themes: {_join_list(item.get('themes'))}"
+                ),
+                path=path,
+            )
+        )
+
+    for item in data.get("life_events", []):
+        records.append(
+            _record(
+                source_id=f"{prefix}_{item['id']}",
+                philosopher=philosopher,
+                book=book,
+                section=str(item.get("period", "Life event")),
+                theme=str(item.get("event", "")),
+                text=(
+                    f"Event: {item.get('event', '')}\n"
+                    f"Period: {item.get('period', '')}\n"
+                    f"Content: {item.get('content', '')}\n"
+                    f"Significance: {item.get('significance', '')}\n"
+                    f"Keywords: {_join_list(item.get('keywords'))}"
+                ),
+                path=path,
+            )
+        )
+
+    speaking_style = data.get("speaking_style")
+    if isinstance(speaking_style, dict):
+        records.append(
+            _record(
+                source_id=f"{prefix}_speaking_style",
+                philosopher=philosopher,
+                book=book,
+                section="Speaking style",
+                theme="Voice and method",
+                text=(
+                    f"Tone: {speaking_style.get('tone', '')}\n"
+                    f"Method: {speaking_style.get('method', '')}\n"
+                    f"RAG voice warning: {speaking_style.get('rag_voice_warning', '')}\n"
+                    f"Never does: {_join_list(speaking_style.get('never_does'))}\n"
+                    f"Signature moves: {_join_list(speaking_style.get('signature_moves'))}\n"
+                    f"Difficult personal questions: {speaking_style.get('on_difficult_personal_questions', '')}"
+                ),
+                path=path,
+            )
+        )
+
+    for item in data.get("key_relationships", []):
+        person = str(item.get("person", ""))
+        records.append(
+            _record(
+                source_id=f"{prefix}_relationship_{_source_id_prefix(person)}",
+                philosopher=philosopher,
+                book=book,
+                section="Key relationship",
+                theme=person,
+                text=(
+                    f"Person: {person}\n"
+                    f"Relation: {item.get('relation', '')}\n"
+                    f"Note: {item.get('note', '')}"
+                ),
+                path=path,
+            )
+        )
+
+    for item in data.get("key_dialogues", []):
+        title = str(item.get("title", "Dialogue"))
+        records.append(
+            _record(
+                source_id=f"{prefix}_{item['id']}",
+                philosopher=philosopher,
+                book=book,
+                section="Key dialogue",
+                theme=title,
+                text=(
+                    f"Title: {title}\n"
+                    f"Topic: {item.get('topic', '')}\n"
+                    f"Key ideas: {_join_list(item.get('key_ideas'))}\n"
+                    f"Famous line: {item.get('famous_line', '')}\n"
+                    f"Famous line speaker: {item.get('famous_line_speaker', '')}\n"
+                    f"Famous line status: {item.get('famous_line_status', '')}\n"
+                    f"Summary line: {item.get('summary_line', '')}"
+                ),
+                path=path,
+            )
+        )
+
+    for index, item in enumerate(data.get("views_on_specific_topics", []), start=1):
+        topic = str(item.get("topic", "Specific topic"))
+        records.append(
+            _record(
+                source_id=f"{prefix}_topic_{index:03d}_{_source_id_prefix(topic)}",
+                philosopher=philosopher,
+                book=book,
+                section="View on specific topic",
+                theme=topic,
+                text=(
+                    f"Topic: {topic}\n"
+                    f"View: {item.get('view', '')}"
+                ),
+                path=path,
+            )
+        )
+
+    return records
 
 
 def _normalise_source_record(record: dict[str, Any], path: Path) -> dict[str, Any]:
@@ -69,6 +276,11 @@ def _normalise_source_record(record: dict[str, Any], path: Path) -> dict[str, An
 def load_records_from_file(path: Path) -> list[dict[str, Any]]:
     with path.open("r", encoding="utf-8") as file:
         records = json.load(file)
+
+    if isinstance(records, dict):
+        if any(field in records for field in DOSSIER_LIST_FIELDS):
+            return _normalise_dossier(records, path)
+        raise ValueError(f"{path} must contain a JSON list of source records or a supported philosopher dossier.")
 
     if not isinstance(records, list):
         raise ValueError(f"{path} must contain a JSON list of source records.")

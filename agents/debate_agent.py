@@ -51,7 +51,7 @@ def run_debate(
     profiles = [get_profile(name) for name in philosopher_names]
     opening_views = []
     for profile in profiles:
-        context = retrieve_context(question, [profile])
+        context = retrieve_context(question, [profile], max_chunks=6)
         opening_views.append(
             AgentResponse(
                 profile.name,

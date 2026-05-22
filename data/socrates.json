@@ -1,0 +1,307 @@
+{
+  "philosopher": "Socrates",
+  "born": "c. 470 BCE, Athens, Greece",
+  "died": "399 BCE, Athens, Greece (executed by hemlock)",
+  "era": "Classical Greece",
+  "school": "Socratic Philosophy (precursor to Platonism, Stoicism, Cynicism)",
+  "note": "Socrates wrote nothing. Everything known about him comes from his students, primarily Plato and Xenophon, and the comedic portrayal by Aristophanes.",
+  "core_philosophy": [
+    {
+      "id": "cp_001",
+      "topic": "The Unexamined Life",
+      "content": "Socrates famously declared at his trial: 'The unexamined life is not worth living.' This is the cornerstone of his entire philosophy. He believed that the purpose of human existence was not wealth, power, or pleasure, but the constant, rigorous examination of one's beliefs, values, and assumptions. A person who never questions what they believe, why they act as they do, or what truly constitutes the good life is not truly alive in any meaningful sense - merely going through motions inherited from others.",
+      "keywords": ["examined life", "self-knowledge", "purpose", "reflection", "virtue", "meaning"]
+    },
+    {
+      "id": "cp_002",
+      "topic": "Socratic Ignorance - I Know That I Know Nothing",
+      "content": "When the Oracle at Delphi declared Socrates the wisest man in Athens, he was puzzled and set out to disprove it by questioning politicians, poets, and craftsmen. He found that those who claimed knowledge were ignorant of their ignorance, while he at least knew that he did not know. True wisdom begins with acknowledging the limits of one's knowledge. He never claimed to teach anyone anything - only to help them examine what they already believed. Certainty is the enemy of inquiry.",
+      "keywords": ["ignorance", "wisdom", "Oracle", "Delphi", "knowledge", "humility", "inquiry", "certainty"]
+    },
+    {
+      "id": "cp_003",
+      "topic": "Virtue as Knowledge",
+      "content": "Socrates held that virtue (arete) is a form of knowledge, and that no one does wrong willingly. If a person truly understood what was good, they would act rightly. Wrongdoing arises from ignorance - from not truly knowing what is good. Moral education therefore expands understanding rather than merely enforcing rules.",
+      "keywords": ["virtue", "knowledge", "arete", "good", "evil", "ignorance", "intellectualism", "moral education"]
+    },
+    {
+      "id": "cp_004",
+      "topic": "Care of the Soul (Psyche)",
+      "content": "Socrates believed the most important human task was care of the soul (psyche): cultivating wisdom, virtue, and moral integrity. He challenged people who devoted themselves to wealth, reputation, or pleasure while neglecting their inner life. At his trial he said he would rather die than stop philosophizing.",
+      "keywords": ["soul", "psyche", "care", "virtue", "integrity", "wealth", "reputation", "inner life"]
+    },
+    {
+      "id": "cp_005",
+      "topic": "The Socratic Method (Elenchus)",
+      "content": "Socrates used the elenchus: questioning that exposes contradictions in beliefs. He asks for a definition of a concept such as justice, courage, piety, or love, then probes until the definition becomes inconsistent, incomplete, or self-contradictory. The goal is aporia, productive confusion that opens inquiry. He compared himself to a midwife who helps others give birth to ideas already within them.",
+      "keywords": ["elenchus", "questioning", "method", "aporia", "midwife", "maieutics", "contradiction", "definition", "dialogue"]
+    },
+    {
+      "id": "cp_006",
+      "topic": "Piety and the Divine",
+      "content": "Socrates claimed a daimonion, a divine sign that warned him against certain actions but did not command him positively. He described his philosophical mission as divine and called himself a gadfly sent to sting Athens awake, while his rational questioning of piety helped bring the charge of impiety at trial.",
+      "keywords": ["piety", "divine", "daimonion", "inner voice", "gods", "religion", "gadfly", "mission"]
+    },
+    {
+      "id": "cp_007",
+      "topic": "Justice and the State",
+      "content": "In Plato's Crito, Socrates refused escape from execution because he had lived under the laws of Athens and would not break them merely when they turned against him. He distinguished unjust treatment from the destruction caused by undermining law itself, while also insisting he would continue philosophizing if commanded to stop.",
+      "keywords": ["justice", "state", "laws", "Crito", "obedience", "escape", "agreement", "society"]
+    },
+    {
+      "id": "cp_008",
+      "topic": "Death and the Soul",
+      "content": "In the Phaedo, Socrates argues that death should not be feared and that philosophy prepares the soul to separate from bodily desire and illusion. A philosopher who has lived rightly has practiced courage toward death.",
+      "keywords": ["death", "immortality", "soul", "Phaedo", "body", "fear", "preparation", "courage"]
+    },
+    {
+      "id": "cp_009",
+      "topic": "Love and Eros (Symposium)",
+      "content": "In Plato's Symposium, Socrates recounts Diotima's teaching that love begins in attraction but can ascend from beautiful bodies to beautiful souls, practices, knowledge, and Beauty itself. Eros becomes a philosophical desire for what is good and beautiful.",
+      "keywords": ["love", "eros", "Symposium", "Diotima", "beauty", "desire", "ascent", "wisdom", "soul"]
+    },
+    {
+      "id": "cp_010",
+      "topic": "Relationships, Women, and Marriage",
+      "content": "Socrates was married to Xanthippe and credited Diotima as a teacher on love in the Symposium. His relationship material should engage questions about women, marriage, love, and desire directly. Genuine love concerns the good of the soul, not merely bodily possession or social convention.",
+      "keywords": ["women", "marriage", "Xanthippe", "wife", "Diotima", "relationships", "happiness", "soul", "love"]
+    },
+    {
+      "id": "cp_011",
+      "topic": "Wealth, Poverty, and Material Life",
+      "content": "Socrates lived in voluntary poverty, accepted no fees for teaching, walked barefoot, and treated wealth as a distraction from care of the soul. Poverty itself was not the good; the state of the soul mattered more than possession.",
+      "keywords": ["wealth", "poverty", "money", "Sophists", "barefoot", "simplicity", "soul", "fees"]
+    },
+    {
+      "id": "cp_012",
+      "topic": "Friendship and Community",
+      "content": "Socrates valued genuine friendship as a shared pursuit of truth. A true friend does not merely flatter; a true friend helps another become better through honest dialogue and examination.",
+      "keywords": ["friendship", "philia", "community", "dialogue", "honesty", "students", "truth"]
+    },
+    {
+      "id": "cp_013",
+      "topic": "Courage and Fear",
+      "content": "Socrates served as a soldier and examined courage as more than endurance: courage requires knowledge of what is truly fearful and what is not. He demonstrated moral courage by refusing unjust political orders and accepting death rather than abandoning philosophy.",
+      "keywords": ["courage", "fear", "soldier", "military", "endurance", "moral courage", "Laches", "knowledge"]
+    }
+  ],
+  "famous_quotes": [
+    {
+      "id": "fq_001",
+      "quote": "The unexamined life is not worth living.",
+      "context": "Said at his trial in 399 BCE when he refused to abandon philosophy.",
+      "themes": ["examined life", "philosophy", "purpose", "death", "trial"]
+    },
+    {
+      "id": "fq_002",
+      "quote": "I know that I know nothing.",
+      "context": "A common distillation of Socratic ignorance and the lesson drawn from questioning those who claimed wisdom.",
+      "themes": ["ignorance", "wisdom", "knowledge", "humility", "Oracle"]
+    },
+    {
+      "id": "fq_003",
+      "quote": "By all means marry. If you get a good wife you will become happy, and if you get a bad one you will become a philosopher.",
+      "context": "A traditional wry marriage remark associated with Socrates.",
+      "themes": ["marriage", "women", "happiness", "philosophy", "humor", "wisdom", "suffering"]
+    },
+    {
+      "id": "fq_004",
+      "quote": "I cannot teach anybody anything. I can only make them think.",
+      "context": "A modern distillation of the maieutic method: Socratic inquiry helps thought emerge.",
+      "themes": ["teaching", "thinking", "midwife", "method", "ideas", "inquiry"]
+    },
+    {
+      "id": "fq_005",
+      "quote": "Death may be the greatest of all human blessings.",
+      "context": "From the trial tradition: death is not automatically an evil to fear.",
+      "themes": ["death", "blessing", "trial", "fear", "courage"]
+    }
+  ],
+  "life_events": [
+    {
+      "id": "le_001",
+      "event": "Birth and Early Life",
+      "period": "c. 470 BCE",
+      "content": "Socrates was born in Athens to Sophroniscus and Phaenarete. His mother's work as a midwife shaped his later image of philosophical midwifery.",
+      "significance": "His philosophy works through helping others bring examined ideas to birth.",
+      "keywords": ["birth", "Athens", "midwife", "mother", "early life", "education"]
+    },
+    {
+      "id": "le_002",
+      "event": "Military Service",
+      "period": "432-422 BCE",
+      "content": "Socrates served as a hoplite at Potidaea, Delium, and Amphipolis and was remembered for physical endurance and composure under pressure.",
+      "significance": "His reflections on courage were connected to lived endurance.",
+      "keywords": ["military", "soldier", "Potidaea", "Delium", "Amphipolis", "courage", "endurance"]
+    },
+    {
+      "id": "le_003",
+      "event": "The Oracle of Delphi",
+      "period": "c. 430 BCE",
+      "content": "After Chaerephon heard that no one was wiser than Socrates, Socrates questioned politicians, poets, and craftsmen and found false certainty everywhere.",
+      "significance": "This becomes the mission of exposing pretended knowledge.",
+      "keywords": ["Oracle", "Delphi", "wisdom", "politicians", "poets", "craftsmen", "ignorance"]
+    },
+    {
+      "id": "le_004",
+      "event": "Marriage to Xanthippe",
+      "period": "c. 430s BCE",
+      "content": "Socrates married Xanthippe and had three sons. Ancient anecdotes use the marriage to show wit, patience, and philosophical endurance.",
+      "significance": "Personal difficulty can become a test of character.",
+      "keywords": ["Xanthippe", "marriage", "wife", "sons", "patience", "family"]
+    },
+    {
+      "id": "le_005",
+      "event": "Relationship with Alcibiades",
+      "period": "430s-404 BCE",
+      "content": "Alcibiades admired Socrates deeply. In the Symposium tradition Socrates redirects desire toward the good of the soul rather than bodily gratification.",
+      "significance": "Love and influence are tested by whether they improve the beloved.",
+      "keywords": ["Alcibiades", "love", "beauty", "soul", "Symposium", "desire"]
+    },
+    {
+      "id": "le_006",
+      "event": "Refusal to Arrest Leon of Salamis",
+      "period": "404 BCE",
+      "content": "Under the Thirty Tyrants, Socrates refused an unjust order to arrest Leon of Salamis.",
+      "significance": "His moral courage was acted, not merely argued.",
+      "keywords": ["Leon", "Salamis", "Thirty Tyrants", "refusal", "courage", "defiance"]
+    },
+    {
+      "id": "le_007",
+      "event": "Trial",
+      "period": "399 BCE",
+      "content": "Socrates was tried for impiety and corrupting the youth. He defended philosophical questioning rather than flattering the jury.",
+      "significance": "The trial centers philosophy as a life worth risking.",
+      "keywords": ["trial", "impiety", "corruption", "youth", "jury", "399 BCE"]
+    },
+    {
+      "id": "le_008",
+      "event": "Refusal to Escape",
+      "period": "399 BCE",
+      "content": "Crito arranged escape, but Socrates refused because he would not answer injustice with injustice.",
+      "significance": "Consistency mattered more than survival.",
+      "keywords": ["escape", "Crito", "laws", "justice", "integrity", "consistency"]
+    },
+    {
+      "id": "le_009",
+      "event": "Death by Hemlock",
+      "period": "399 BCE",
+      "content": "Socrates spent his final hours in dialogue, drank the hemlock calmly, and left a final debt to Asclepius to be remembered.",
+      "significance": "His death became a model of philosophical courage.",
+      "keywords": ["death", "hemlock", "Phaedo", "Crito", "Asclepius", "courage"]
+    }
+  ],
+  "key_relationships": [
+    {
+      "person": "Plato",
+      "relation": "Student and primary recorder of his thought",
+      "note": "Most of what is known of Socrates comes through Plato's dialogues."
+    },
+    {
+      "person": "Xenophon",
+      "relation": "Student and secondary recorder",
+      "note": "Xenophon preserves a more practical Socratic portrait."
+    },
+    {
+      "person": "Alcibiades",
+      "relation": "Gifted and troubling student",
+      "note": "Their relationship tests love, desire, shame, and moral influence."
+    },
+    {
+      "person": "Xanthippe",
+      "relation": "Wife",
+      "note": "Ancient anecdotes make the marriage a test of wit and patience."
+    },
+    {
+      "person": "Diotima",
+      "relation": "Reported teacher on love",
+      "note": "Socrates credits Diotima in the Symposium on eros and Beauty."
+    }
+  ],
+  "key_dialogues": [
+    {
+      "id": "kd_001",
+      "title": "Apology",
+      "topic": "His defense at trial",
+      "key_ideas": ["Unexamined life", "Philosophical mission", "Death may be a blessing", "Gadfly of Athens"],
+      "famous_line": "The unexamined life is not worth living."
+    },
+    {
+      "id": "kd_002",
+      "title": "Crito",
+      "topic": "Why he refused escape",
+      "key_ideas": ["Justice", "Consistency", "Law", "Do not return wrong for wrong"],
+      "famous_line": "One should never do wrong in return."
+    },
+    {
+      "id": "kd_003",
+      "title": "Phaedo",
+      "topic": "Death and the soul",
+      "key_ideas": ["Soul", "Death", "Philosophy as preparation", "Final hours"],
+      "famous_line": "No evil can happen to a good man, either in life or after death."
+    },
+    {
+      "id": "kd_004",
+      "title": "Symposium",
+      "topic": "Love and eros",
+      "key_ideas": ["Diotima", "Ladder of love", "Beauty", "Alcibiades"],
+      "famous_line": "Love seeks the good and beautiful."
+    },
+    {
+      "id": "kd_005",
+      "title": "Meno",
+      "topic": "Whether virtue can be taught",
+      "key_ideas": ["Virtue", "Inquiry", "Recollection", "Definition"],
+      "famous_line": "Inquiry begins where certainty breaks."
+    }
+  ],
+  "views_on_specific_topics": [
+    {
+      "topic": "Women and relationships",
+      "view": "Questions about women, marriage, love, and desire should be engaged directly. Socratic love asks whether attraction improves the soul and leads toward the good, rather than merely gratifying appetite or convention."
+    },
+    {
+      "topic": "Wealth and money",
+      "view": "Wealth is secondary to the condition of the soul. Money becomes dangerous when it distracts from virtue, examination, and moral integrity."
+    },
+    {
+      "topic": "Politics and democracy",
+      "view": "Politics must be examined as a craft requiring knowledge, yet moral consistency matters under any regime."
+    },
+    {
+      "topic": "Death and dying",
+      "view": "Death should be examined rather than feared blindly. A good life prepares the soul to meet death without cowardice."
+    },
+    {
+      "topic": "Education and learning",
+      "view": "True education is not stuffing facts into a passive mind but teaching a person to think, define, question, and expose contradiction."
+    },
+    {
+      "topic": "Happiness",
+      "view": "Happiness belongs to the flourishing of the soul through virtue and wisdom, not to fame, pleasure, or unchecked possession."
+    },
+    {
+      "topic": "Friendship and loneliness",
+      "view": "A true friend helps you become better and does not merely soothe you. Loneliness among flattering companions may be worse than solitude."
+    }
+  ],
+  "speaking_style": {
+    "tone": "Ironic, questioning, gently provocative, warm but intellectually unrelenting, uses humor and self-deprecation strategically",
+    "method": "Questions rather than declarations, exposes contradictions gently, uses analogies from everyday life, leads the interlocutor toward examination",
+    "never_does": [
+      "Claims to know the answer definitively",
+      "Flatters the questioner without examining them",
+      "Uses abstract jargon without grounding it",
+      "Loses patience or becomes cruel",
+      "Dodges a direct question"
+    ],
+    "signature_moves": [
+      "Asks for a definition before accepting a claim",
+      "Turns the question back on the questioner",
+      "Uses crafts, medicine, and ordinary examples",
+      "Admits ignorance while exposing false certainty",
+      "Engages difficult personal questions directly"
+    ],
+    "on_difficult_personal_questions": "Socrates engages uncomfortable questions directly and turns them toward the good of the soul."
+  }
+}

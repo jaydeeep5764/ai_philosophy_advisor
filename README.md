@@ -10,7 +10,7 @@ The app does not pretend to quote historical philosophers. It gives modern inter
 - Council Discussion mode where multiple philosophers answer, followed by a structured Council Review.
 - Debate Mode where 2 to 4 philosophers respond, challenge another view, and receive a neutral judge summary.
 - Modular agent layer separated from the Streamlit UI.
-- Reusable Gemini LLM integration through `utils/llm.py`.
+- Switchable Gemini, OpenAI, xAI Grok, and Groq generation through `utils/llm.py`.
 - Centralized prompt construction in `utils/prompts.py`.
 - Streamlit session memory that remembers recent questions and answers during the current browser session.
 - Clickable memory history so users can reopen a prior exchange and continue with the same philosopher or council.
@@ -83,13 +83,45 @@ On macOS or Linux:
 cp .env.example .env
 ```
 
-Add your Gemini API key to `.env`:
+Add provider settings to `.env`. Keep multiple keys if you want to switch providers later:
 
 ```text
+LLM_PROVIDER=gemini
+LLM_PROVIDER_FALLBACKS=groq,xai,openai
 GEMINI_API_KEY=your_real_key_here
 GEMINI_MODEL=gemini-2.5-flash
 GEMINI_EMBEDDING_MODEL=models/gemini-embedding-001
+OPENAI_API_KEY=your_openai_key_here
+OPENAI_MODEL=gpt-5
+XAI_API_KEY=your_xai_key_here
+XAI_MODEL=grok-4.3
+GROQ_API_KEY=your_groq_key_here
+GROQ_MODEL=llama-3.3-70b-versatile
+EMBEDDING_PROVIDER=local
 ```
+
+To use OpenAI generation instead of Gemini, change only:
+
+```text
+LLM_PROVIDER=openai
+```
+
+To use xAI Grok generation instead, change only:
+
+```text
+LLM_PROVIDER=xai
+```
+
+To use Groq generation instead, change only:
+
+```text
+LLM_PROVIDER=groq
+```
+
+`LLM_PROVIDER` is the first generation provider. `LLM_PROVIDER_FALLBACKS` is a
+comma-separated retry order used only when a provider reports quota or rate-limit
+exhaustion. Key, model, request, and network errors still surface immediately so
+bad configuration is not silently hidden.
 
 Build the local ChromaDB index:
 
@@ -118,7 +150,7 @@ streamlit run app.py
 
 The code is organized so new philosophers can be added by extending `PHILOSOPHER_PROFILES` in `agents/philosopher_profiles.py`. Each profile includes `name`, `full_name`, and taxonomy fields such as `tradition`, `school`, `era`, `region`, and `source_tags`. Agent orchestration lives in `agents/`, prompt construction lives in `utils/prompts.py`, ChromaDB ingestion lives in `ingest.py`, ChromaDB retrieval lives in `retriever.py`, and provider-specific LLM code lives in `utils/llm.py`.
 
-The current Chroma knowledge base is sourced from `data/marcus_aurelius_meditations.json`, so Marcus Aurelius has the strongest grounded answers. Add more structured JSON source files and ingestion logic as the next step to ground other philosophers.
+The Chroma knowledge base is sourced from structured JSON files in `data/`. Current grounded datasets include Marcus Aurelius, Nietzsche, Buddha, Chanakya, Diogenes, and Socrates. Add more structured JSON source files and rebuild the index to ground other philosophers.
 
 Session memory is stored in Streamlit session state. It remembers the latest interactions only while the current app session is open, can be opened from the sidebar, and can be cleared from the sidebar. Selecting a memory loads the previous question and answer into the page and sets the app back to the same mode/philosopher set for continuation.
 
@@ -133,4 +165,4 @@ This foundation is intended to support future upgrades without major rewrites:
 
 ## Limitations
 
-This MVP uses Gemini generation and profile-based prompting. It is not a historical authority, therapist, doctor, lawyer, or emergency service. Responses should be treated as reflective guidance, not professional advice or guaranteed historical interpretation.
+This MVP uses provider-based generation and profile-based prompting. It is not a historical authority, therapist, doctor, lawyer, or emergency service. Responses should be treated as reflective guidance, not professional advice or guaranteed historical interpretation.

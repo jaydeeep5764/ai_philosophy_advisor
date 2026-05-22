@@ -37,7 +37,7 @@ def run_council_discussion(
     perspectives = []
     profiles = [get_profile(name) for name in philosopher_names]
     for profile in profiles:
-        context = retrieve_context(question, [profile])
+        context = retrieve_context(question, [profile], max_chunks=6)
         prompt = build_single_philosopher_prompt(profile, question, context.text, memory_context, response_language)
         perspectives.append(AgentResponse(profile.name, generate_response(prompt), context.sources))
 

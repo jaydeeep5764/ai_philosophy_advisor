@@ -29,7 +29,7 @@ def ask_philosopher(
         )
 
     profile = get_profile(philosopher_name)
-    context = retrieve_context(question, [profile])
+    context = retrieve_context(question, [profile], max_chunks=6)
     prompt = build_single_philosopher_prompt(
         profile,
         question,
