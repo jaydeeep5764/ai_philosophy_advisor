@@ -1,6 +1,9 @@
 from __future__ import annotations
 
 import base64
+import html
+import re
+import time
 from pathlib import Path
 
 import streamlit as st
@@ -38,6 +41,13 @@ RESPONSE_LANGUAGES = (
 )
 ROOT_DIR = Path(__file__).resolve().parent
 OLD_MAP_TEXTURE_PATH = ROOT_DIR / "assets" / "old_map_texture.jpg"
+PHILOSOPHER_IMAGE_PATHS = {
+    "Aristotle": ROOT_DIR / "assets" / "philosophers" / "aristotle.jpg",
+    "Chanakya": ROOT_DIR / "assets" / "philosophers" / "chanakya.jpeg",
+    "Marcus Aurelius": ROOT_DIR / "assets" / "philosophers" / "marcus_aurelius.jpeg",
+    "Socrates": ROOT_DIR / "assets" / "philosophers" / "socrates.jpg",
+}
+ANSWER_WORD_DELAY_SECONDS = 0.018
 
 
 def get_asset_data_uri(path: Path, mime_type: str) -> str:
@@ -280,6 +290,45 @@ def configure_page() -> None:
                 line-height: 1.45;
             }
 
+            .agent-heading {
+                display: flex;
+                align-items: center;
+                gap: 0.72rem;
+                margin: 0.1rem 0 0.58rem 0;
+            }
+
+            .agent-portrait {
+                width: 3.25rem;
+                height: 3.25rem;
+                flex: 0 0 3.25rem;
+                object-fit: cover;
+                border-radius: 50%;
+                border: 2px solid rgba(74, 42, 20, 0.76);
+                box-shadow:
+                    0 5px 16px rgba(42, 24, 12, 0.28),
+                    inset 0 0 0 1px rgba(250, 225, 166, 0.28);
+                filter: sepia(0.36) saturate(0.8) contrast(1.08);
+                background: rgba(238, 203, 137, 0.74);
+            }
+
+            .agent-portrait-chanakya {
+                object-position: 43% 31%;
+                transform: scale(1.18);
+            }
+
+            .agent-portrait-aristotle {
+                object-position: 50% 26%;
+                transform: scale(1.24);
+            }
+
+            .agent-heading-title {
+                color: var(--ink);
+                font-family: Georgia, "Times New Roman", serif;
+                font-size: 1.52rem;
+                font-weight: 760;
+                line-height: 1.12;
+            }
+
             [data-testid="stSidebar"] {
                 background:
                     radial-gradient(circle at top left, rgba(246, 220, 167, 0.4), transparent 14rem),
@@ -510,12 +559,68 @@ def render_active_memory() -> None:
             st.rerun()
 
 
-def render_agent_card(title: str, body: str, subtitle: str | None = None) -> None:
-    with st.container(border=True):
+def split_answer_for_animation(body: str) -> list[str]:
+    tokens = re.findall(r"\S+\s*|\n+", body)
+    return tokens or [body]
+
+
+def render_animated_markdown(body: str) -> None:
+    placeholder = st.empty()
+    visible_text = ""
+    for token in split_answer_for_animation(body):
+        visible_text += token
+        placeholder.markdown(visible_text)
+        time.sleep(ANSWER_WORD_DELAY_SECONDS)
+
+
+def philosopher_image_uri(title: str) -> str:
+    for philosopher, path in PHILOSOPHER_IMAGE_PATHS.items():
+        if title == philosopher or title.startswith(f"{philosopher} "):
+            return get_asset_data_uri(path, "image/jpeg")
+    return ""
+
+
+def philosopher_image_class(title: str) -> str:
+    classes = ["agent-portrait"]
+    if title == "Aristotle" or title.startswith("Aristotle "):
+        classes.append("agent-portrait-aristotle")
+    if title == "Chanakya" or title.startswith("Chanakya "):
+        classes.append("agent-portrait-chanakya")
+    return " ".join(classes)
+
+
+def render_agent_heading(title: str) -> None:
+    image_uri = philosopher_image_uri(title)
+    safe_title = html.escape(title)
+    if not image_uri:
         st.subheader(title)
+        return
+
+    st.markdown(
+        (
+            "<div class='agent-heading'>"
+            f"<img class='{philosopher_image_class(title)}' src='{image_uri}' alt='{safe_title} portrait' />"
+            f"<div class='agent-heading-title'>{safe_title}</div>"
+            "</div>"
+        ),
+        unsafe_allow_html=True,
+    )
+
+
+def render_agent_card(
+    title: str,
+    body: str,
+    subtitle: str | None = None,
+    animate: bool = False,
+) -> None:
+    with st.container(border=True):
+        render_agent_heading(title)
         if subtitle:
             st.markdown(f"<div class='small-muted'>{subtitle}</div>", unsafe_allow_html=True)
-        st.markdown(body)
+        if animate:
+            render_animated_markdown(body)
+        else:
+            st.markdown(body)
 
 
 def render_tradition_filter() -> tuple[str, tuple[str, ...]]:
@@ -576,6 +681,7 @@ def render_single_mode(
     render_agent_card(
         f"{result.philosopher}",
         result.response,
+        animate=True,
     )
     remember_interaction("Ask One Philosopher", question, [selected], result.response)
     return True, selected
@@ -632,10 +738,11 @@ def render_council_mode(
             render_agent_card(
                 perspective.philosopher,
                 perspective.response,
+                animate=True,
             )
 
     st.subheader("Council Review")
-    render_agent_card("Final Review", result.council_review)
+    render_agent_card("Final Review", result.council_review, animate=True)
     remember_interaction("Council Discussion", question, selected, result.council_review)
     return True, selected
 
@@ -691,6 +798,7 @@ def render_debate_mode(
             render_agent_card(
                 perspective.philosopher,
                 perspective.response,
+                animate=True,
             )
 
     st.subheader("Challenges")
@@ -700,10 +808,11 @@ def render_debate_mode(
             render_agent_card(
                 f"{challenge.philosopher} challenges {challenge.target_philosopher}",
                 challenge.challenge,
+                animate=True,
             )
 
     st.subheader("Neutral Judge")
-    render_agent_card("Final Summary", result.judge_summary)
+    render_agent_card("Final Summary", result.judge_summary, animate=True)
     remember_interaction("Debate Mode", question, selected, result.judge_summary)
     return True, selected
 
